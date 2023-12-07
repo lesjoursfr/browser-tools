@@ -135,7 +135,16 @@ export function off(
 export function trigger(
   node: Window | Document | HTMLElement,
   event: string,
-  payload?: { [key: string]: unknown }
+  payload?: object
 ): void {
   node.dispatchEvent(new CustomEvent(event, { detail: payload }));
+}
+
+/**
+ * Check if the event is a TouchEvent
+ * @param {Event} e
+ * @returns {boolean} true if the event is a TouchEvent
+ */
+export function isTouchEvent(e: Event): e is TouchEvent {
+  return window.TouchEvent && e instanceof TouchEvent;
 }
