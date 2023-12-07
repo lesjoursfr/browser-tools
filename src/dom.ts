@@ -413,7 +413,7 @@ export function resetAttributesTo(node: HTMLElement, targetAttributes: { [keyof:
 }
 
 /**
- * Replace the node's style attribute by some regular nodes (<b>, <i>, <u> or <s>).
+ * Replace the node's style attribute by some regular nodes (`<b>`, `<i>`, `<u>` or `<s>`).
  * @param {HTMLElement} node the node to process
  * @returns {HTMLElement} the new node
  */

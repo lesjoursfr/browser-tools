@@ -132,11 +132,7 @@ export function off(
  * @param {string} event
  * @param {Object|undefined} payload
  */
-export function trigger(
-  node: Window | Document | HTMLElement,
-  event: string,
-  payload?: object
-): void {
+export function trigger(node: Window | Document | HTMLElement, event: string, payload?: object): void {
   node.dispatchEvent(new CustomEvent(event, { detail: payload }));
 }
 

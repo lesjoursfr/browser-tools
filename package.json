@@ -1,6 +1,6 @@
 {
 	"name": "@lesjoursfr/browser-tools",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Some browser tools for events & DOM manipulation.",
 	"license": "MIT",
 	"repository": "lesjoursfr/browser-tools",
@@ -25,7 +25,7 @@
 		"prettier-fix": "prettier --write .",
 		"test": "NODE_OPTIONS='--loader=ts-node/esm' mocha",
 		"build": "tsc",
-		"typedoc": "typedoc src/index.ts --out ./docs"
+		"typedoc": "typedoc src/index.ts --out ./docs && prettier --write ./docs --ignore-path .gitignore"
 	},
 	"files": [
 		"src/**/*",

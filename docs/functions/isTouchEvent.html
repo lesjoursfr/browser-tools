@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
-		<title>hasAttribute | @lesjoursfr/browser-tools</title>
+		<title>isTouchEvent | @lesjoursfr/browser-tools</title>
 		<meta name="description" content="Documentation for @lesjoursfr/browser-tools" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/style.css" />
@@ -44,55 +44,51 @@
 				<div class="tsd-page-title">
 					<ul class="tsd-breadcrumb">
 						<li><a href="../modules.html">@lesjoursfr/browser-tools</a></li>
-						<li><a href="hasAttribute.html">hasAttribute</a></li>
+						<li><a href="isTouchEvent.html">isTouchEvent</a></li>
 					</ul>
-					<h1>Function hasAttribute</h1>
+					<h1>Function isTouchEvent</h1>
 				</div>
 				<section class="tsd-panel">
 					<ul class="tsd-signatures">
 						<li class="tsd-signature tsd-anchor-link">
-							<a id="hasAttribute" class="tsd-anchor"></a
-							><span class="tsd-kind-call-signature">has<wbr />Attribute</span
-							><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span>,
-							<span class="tsd-kind-parameter">attribute</span><span class="tsd-signature-symbol">)</span
-							><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span
-							><a href="#hasAttribute" aria-label="Permalink" class="tsd-anchor-icon"
+							<a id="isTouchEvent" class="tsd-anchor"></a
+							><span class="tsd-kind-call-signature">is<wbr />Touch<wbr />Event</span
+							><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">e</span
+							><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
+							><span class="tsd-kind-parameter">e</span><span class="tsd-signature-keyword"> is </span
+							><span class="tsd-signature-type">TouchEvent</span
+							><a href="#isTouchEvent" aria-label="Permalink" class="tsd-anchor-icon"
 								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
 							></a>
 						</li>
 						<li class="tsd-description">
-							<div class="tsd-comment tsd-typography">
-								<p>Check if the node has the given attribute.</p>
-							</div>
+							<div class="tsd-comment tsd-typography"><p>Check if the event is a TouchEvent</p></div>
 							<div class="tsd-parameters">
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameter-list">
 									<li>
 										<h5>
-											<span class="tsd-kind-parameter">node</span>:
-											<span class="tsd-signature-type">HTMLElement</span>
-										</h5>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">attribute</span>:
-											<span class="tsd-signature-type">string</span>
+											<span class="tsd-kind-parameter">e</span>:
+											<span class="tsd-signature-type">Event</span>
 										</h5>
 										<div class="tsd-comment tsd-typography"></div>
 									</li>
 								</ul>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true or false</p>
+							<h4 class="tsd-returns-title">
+								Returns <span class="tsd-kind-parameter">e</span
+								><span class="tsd-signature-keyword"> is </span
+								><span class="tsd-signature-type">TouchEvent</span>
+							</h4>
+							<p>true if the event is a TouchEvent</p>
 							<div class="tsd-comment tsd-typography"></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>
 										Defined in
 										<a
-											href="https://github.com/lesjoursfr/browser-tools/blob/853dc73/src/dom.ts#L99"
-											>dom.ts:99</a
+											href="https://github.com/lesjoursfr/browser-tools/blob/853dc73/src/events.ts#L144"
+											>events.ts:144</a
 										>
 									</li>
 								</ul>
@@ -319,7 +315,7 @@
 								>
 							</li>
 							<li>
-								<a href="hasAttribute.html" class="current"
+								<a href="hasAttribute.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>hasAttribute</a
 								>
@@ -367,7 +363,7 @@
 								>
 							</li>
 							<li>
-								<a href="isTouchEvent.html"
+								<a href="isTouchEvent.html" class="current"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>isTouchEvent</a
 								>
