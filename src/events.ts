@@ -127,13 +127,13 @@ export function off(
 }
 
 /**
- * Trigger the EdithEvent on the node.
+ * Trigger the Event on the node.
  * @param {Window|Document|HTMLElement} node
- * @param {string} event
+ * @param {string|Event} event
  * @param {Object|undefined} payload
  */
-export function trigger(node: Window | Document | HTMLElement, event: string, payload?: object): void {
-  node.dispatchEvent(new CustomEvent(event, { detail: payload }));
+export function trigger(node: Window | Document | HTMLElement, event: string | Event, payload?: object): void {
+  node.dispatchEvent(typeof event === "string" ? new CustomEvent(event, { detail: payload }) : event);
 }
 
 /**

@@ -3,18 +3,21 @@
 		"**/.git/**": true,
 		"**/node_modules/**": true,
 		"**/.yarn/**": true,
+		"**/docs/**": true,
 		"**/dist/**": true
 	},
 	"files.exclude": {
 		"**/.git/**": true,
 		"**/node_modules/**": true,
 		"**/.yarn/**": true,
+		"**/docs/**": true,
 		"**/dist/**": true
 	},
 	"files.watcherExclude": {
 		"**/.git/**": true,
 		"**/node_modules/**": true,
 		"**/.yarn/**": true,
+		"**/docs/**": true,
 		"**/dist/**": true
 	},
 	"editor.formatOnSave": true,
