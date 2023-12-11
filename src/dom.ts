@@ -73,7 +73,6 @@ export function createFromTemplate(template: string): HTMLElement {
  * @param {string|null} value (default to `null`)
  * @returns {HTMLElement} the element
  */
-
 export function updateCSS(
   node: HTMLElement,
   property: string | { [key: string]: string | null },
