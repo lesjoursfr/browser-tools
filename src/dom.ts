@@ -90,6 +90,58 @@ export function updateCSS(
 }
 
 /**
+ * Update the given CSS property.
+ * If the value is `null` the property will be removed.
+ * @param {string} id the id of the node to update
+ * @param {string|{ [key: string]: string|null }} property multi-word property names are hyphenated (kebab-case) and not camel-cased.
+ * @param {string|null} value (default to `null`)
+ */
+export function updateCSSOfElement(
+  id: string,
+  property: string | { [key: string]: string | null },
+  value: string | null = null
+): void {
+  const node = document.getElementById(id);
+  if (node === null) {
+    return;
+  }
+
+  if (typeof property !== "string") {
+    for (const [key, val] of Object.entries(property)) {
+      val !== null ? node.style.setProperty(key, val) : node.style.removeProperty(key);
+    }
+  } else {
+    value !== null ? node.style.setProperty(property, value) : node.style.removeProperty(property);
+  }
+}
+
+/**
+ * Update the given CSS property.
+ * If the value is `null` the property will be removed.
+ * @param {string} selector the CSS selector of the nodes to update
+ * @param {string|{ [key: string]: string|null }} property multi-word property names are hyphenated (kebab-case) and not camel-cased.
+ * @param {string|null} value (default to `null`)
+ */
+export function updateCSSOfElements(
+  selector: string,
+  property: string | { [key: string]: string | null },
+  value: string | null = null
+): void {
+  const nodes = document.querySelectorAll<HTMLElement>(selector);
+  if (typeof property !== "string") {
+    for (const node of nodes) {
+      for (const [key, val] of Object.entries(property)) {
+        val !== null ? node.style.setProperty(key, val) : node.style.removeProperty(key);
+      }
+    }
+  } else {
+    for (const node of nodes) {
+      value !== null ? node.style.setProperty(property, value) : node.style.removeProperty(property);
+    }
+  }
+}
+
+/**
  * Check if the node has the given attribute.
  * @param {HTMLElement} node
  * @param {string} attribute
@@ -213,6 +265,42 @@ export function addClass(node: HTMLElement, className: string | Array<string>): 
 }
 
 /**
+ * Add the class to the node's class attribute with the given id.
+ * @param {string} id
+ * @param {string|Array<string>} className
+ */
+export function addClassToElement(id: string, className: string | Array<string>): void {
+  const node = document.getElementById(id);
+  if (node === null) {
+    return;
+  }
+
+  if (typeof className === "string") {
+    node.classList.add(className);
+  } else {
+    node.classList.add(...className);
+  }
+}
+
+/**
+ * Add the class to the nodes' class attribute that match the given CSS selector.
+ * @param {string} selector
+ * @param {string|Array<string>} className
+ */
+export function addClassToElements(selector: string, className: string | Array<string>): void {
+  const nodes = document.querySelectorAll<HTMLElement>(selector);
+  if (typeof className === "string") {
+    for (const node of nodes) {
+      node.classList.add(className);
+    }
+  } else {
+    for (const node of nodes) {
+      node.classList.add(...className);
+    }
+  }
+}
+
+/**
  * Remove the class from the node's class attribute.
  * @param {HTMLElement} node
  * @param {string|Array<string>} className
@@ -226,6 +314,42 @@ export function removeClass(node: HTMLElement, className: string | Array<string>
   }
 
   return node;
+}
+
+/**
+ * Remove the class from the node's class attribute with the given id.
+ * @param {string} id
+ * @param {string|Array<string>} className
+ */
+export function removeClassFromElement(id: string, className: string | Array<string>): void {
+  const node = document.getElementById(id);
+  if (node === null) {
+    return;
+  }
+
+  if (typeof className === "string") {
+    node.classList.remove(className);
+  } else {
+    node.classList.remove(...className);
+  }
+}
+
+/**
+ * Remove the class from the nodes' class attribute that match the given CSS selector.
+ * @param {string} selector
+ * @param {string|Array<string>} className
+ */
+export function removeClassFromElements(selector: string, className: string | Array<string>): void {
+  const nodes = document.querySelectorAll<HTMLElement>(selector);
+  if (typeof className === "string") {
+    for (const node of nodes) {
+      node.classList.remove(className);
+    }
+  } else {
+    for (const node of nodes) {
+      node.classList.remove(...className);
+    }
+  }
 }
 
 /**

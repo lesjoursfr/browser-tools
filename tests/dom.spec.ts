@@ -1,6 +1,8 @@
 import assert from "assert";
 import {
   addClass,
+  addClassToElement,
+  addClassToElements,
   createFromTemplate,
   createNodeWith,
   getAttribute,
@@ -14,6 +16,8 @@ import {
   isSelfClosing,
   isTextNode,
   removeClass,
+  removeClassFromElement,
+  removeClassFromElements,
   removeCommentNodes,
   removeEmptyTextNodes,
   removeNodes,
@@ -27,6 +31,8 @@ import {
   trimTag,
   unwrapNode,
   updateCSS,
+  updateCSSOfElement,
+  updateCSSOfElements,
 } from "../src/dom.js";
 
 it("core.dom.isCommentNode", () => {
@@ -84,6 +90,76 @@ it("core.dom.updateCSS", () => {
   updateCSS(node, "color", null);
   updateCSS(node, "font-size", null);
   updateCSS(node, { top: null, "background-color": null, "text-align": null });
+
+  assert.strictEqual(node.style.color, "");
+  assert.strictEqual(node.style.fontSize, "");
+  assert.strictEqual(node.style.top, "");
+  assert.strictEqual(node.style.backgroundColor, "");
+  assert.strictEqual(node.style.textAlign, "");
+});
+
+it("core.dom.updateCSSOfElement", () => {
+  document.body.innerHTML = '<div id="foo"></div>';
+  const node = document.getElementById("foo")!;
+
+  updateCSSOfElement("foo", "color", "red");
+  updateCSSOfElement("foo", "font-size", "20px");
+  updateCSSOfElement("foo", { top: "10px", "background-color": "blue", "text-align": "center" });
+
+  assert.strictEqual(node.style.color, "red");
+  assert.strictEqual(node.style.fontSize, "20px");
+  assert.strictEqual(node.style.top, "10px");
+  assert.strictEqual(node.style.backgroundColor, "blue");
+  assert.strictEqual(node.style.textAlign, "center");
+
+  updateCSSOfElement("foo", "color", "blue");
+  updateCSSOfElement("foo", "font-size", "30px");
+  updateCSSOfElement("foo", { top: "20px", "background-color": "red", "text-align": "left" });
+
+  assert.strictEqual(node.style.color, "blue");
+  assert.strictEqual(node.style.fontSize, "30px");
+  assert.strictEqual(node.style.top, "20px");
+  assert.strictEqual(node.style.backgroundColor, "red");
+  assert.strictEqual(node.style.textAlign, "left");
+
+  updateCSSOfElement("foo", "color", null);
+  updateCSSOfElement("foo", "font-size", null);
+  updateCSSOfElement("foo", { top: null, "background-color": null, "text-align": null });
+
+  assert.strictEqual(node.style.color, "");
+  assert.strictEqual(node.style.fontSize, "");
+  assert.strictEqual(node.style.top, "");
+  assert.strictEqual(node.style.backgroundColor, "");
+  assert.strictEqual(node.style.textAlign, "");
+});
+
+it("core.dom.updateCSSOfElements", () => {
+  document.body.innerHTML = '<div class="foo"></div>';
+  const node = document.querySelector<HTMLElement>(".foo")!;
+
+  updateCSSOfElements(".foo", "color", "red");
+  updateCSSOfElements(".foo", "font-size", "20px");
+  updateCSSOfElements(".foo", { top: "10px", "background-color": "blue", "text-align": "center" });
+
+  assert.strictEqual(node.style.color, "red");
+  assert.strictEqual(node.style.fontSize, "20px");
+  assert.strictEqual(node.style.top, "10px");
+  assert.strictEqual(node.style.backgroundColor, "blue");
+  assert.strictEqual(node.style.textAlign, "center");
+
+  updateCSSOfElements(".foo", "color", "blue");
+  updateCSSOfElements(".foo", "font-size", "30px");
+  updateCSSOfElements(".foo", { top: "20px", "background-color": "red", "text-align": "left" });
+
+  assert.strictEqual(node.style.color, "blue");
+  assert.strictEqual(node.style.fontSize, "30px");
+  assert.strictEqual(node.style.top, "20px");
+  assert.strictEqual(node.style.backgroundColor, "red");
+  assert.strictEqual(node.style.textAlign, "left");
+
+  updateCSSOfElements(".foo", "color", null);
+  updateCSSOfElements(".foo", "font-size", null);
+  updateCSSOfElements(".foo", { top: null, "background-color": null, "text-align": null });
 
   assert.strictEqual(node.style.color, "");
   assert.strictEqual(node.style.fontSize, "");
@@ -170,11 +246,63 @@ it("core.dom.addClass", () => {
   );
 });
 
+it("core.dom.addClassToElement", () => {
+  document.body.innerHTML = '<p id="id" class="bar">Hello world</p>';
+  const node = document.getElementById("id")!;
+  addClassToElement("id", "foo");
+  addClassToElement("id", ["abc", "def"]);
+
+  const classList = node.classList;
+  assert.strictEqual(
+    ["bar", "foo", "abc", "def"].every((className) => classList.contains(className)),
+    true
+  );
+});
+
+it("core.dom.addClassToElements", () => {
+  document.body.innerHTML = '<p class="bar">Hello world</p>';
+  const node = document.querySelector(".bar")!;
+  addClassToElements(".bar", "foo");
+  addClassToElements(".bar", ["abc", "def"]);
+
+  const classList = node.classList;
+  assert.strictEqual(
+    ["bar", "foo", "abc", "def"].every((className) => classList.contains(className)),
+    true
+  );
+});
+
 it("core.dom.removeClass", () => {
   document.body.innerHTML = '<p class="bar foo abc def">Hello world</p>';
   const node = document.querySelector("p")!;
   removeClass(node, "foo");
   removeClass(node, ["abc", "def"]);
+
+  const classList = node.classList;
+  assert.strictEqual(
+    ["foo", "abc", "def"].some((className) => classList.contains(className)),
+    false
+  );
+});
+
+it("core.dom.removeClassFromElement", () => {
+  document.body.innerHTML = '<p id="id" class="bar foo abc def">Hello world</p>';
+  const node = document.getElementById("id")!;
+  removeClassFromElement("id", "foo");
+  removeClassFromElement("id", ["abc", "def"]);
+
+  const classList = node.classList;
+  assert.strictEqual(
+    ["foo", "abc", "def"].some((className) => classList.contains(className)),
+    false
+  );
+});
+
+it("core.dom.removeClassFromElements", () => {
+  document.body.innerHTML = '<p class="bar foo abc def">Hello world</p>';
+  const node = document.querySelector(".bar")!;
+  removeClassFromElements(".bar", "foo");
+  removeClassFromElements(".bar", ["abc", "def"]);
 
   const classList = node.classList;
   assert.strictEqual(
