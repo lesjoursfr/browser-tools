@@ -1,14 +1,14 @@
 import Cookies from "js-cookie";
 
-export enum LesJoursStorageTypes {
+export enum KeyValueStorageTypes {
   localStorage = 1,
   cookies = 2,
 }
 
-export abstract class AbstractStorageStore {
-  public readonly type: LesJoursStorageTypes;
+export abstract class AbstractKeyValueStore {
+  public readonly type: KeyValueStorageTypes;
 
-  public constructor(type: LesJoursStorageTypes) {
+  public constructor(type: KeyValueStorageTypes) {
     this.type = type;
   }
 
@@ -33,9 +33,9 @@ export abstract class AbstractStorageStore {
   public abstract removeItem(key: string): void;
 }
 
-export class LesJoursLocalStorageStore extends AbstractStorageStore {
+export class LocalStorageKeyValueStore extends AbstractKeyValueStore {
   public constructor() {
-    super(LesJoursStorageTypes.localStorage);
+    super(KeyValueStorageTypes.localStorage);
   }
 
   public getItem(key: string): undefined | string {
@@ -52,11 +52,11 @@ export class LesJoursLocalStorageStore extends AbstractStorageStore {
   }
 }
 
-export class LesJoursCookiesStore extends AbstractStorageStore {
+export class CookiesKeyValueStore extends AbstractKeyValueStore {
   private readonly expires: number;
 
   public constructor(expires: number) {
-    super(LesJoursStorageTypes.cookies);
+    super(KeyValueStorageTypes.cookies);
     this.expires = expires;
   }
 
@@ -89,18 +89,18 @@ export function isLocalStorageAvailable(): boolean {
   }
 }
 
-let store: AbstractStorageStore | null = null;
+let store: AbstractKeyValueStore | null = null;
 
 /**
  * Get the default store for the browser.
  * The default store is the localStorage if it's available or the cookies.
  *
  * @param {number} expires the expires value for the cookies
- * @returns {AbstractStorageStore} the default store
+ * @returns {AbstractKeyValueStore} the default store
  */
-export function getStore(expires: number = 365): AbstractStorageStore {
+export function getDefaultKeyValueStore(expires: number = 365): AbstractKeyValueStore {
   if (store === null) {
-    store = isLocalStorageAvailable() ? new LesJoursLocalStorageStore() : new LesJoursCookiesStore(expires);
+    store = isLocalStorageAvailable() ? new LocalStorageKeyValueStore() : new CookiesKeyValueStore(expires);
   }
 
   return store;
