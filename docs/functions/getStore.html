@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
-		<title>updateCSSOfElements | @lesjoursfr/browser-tools</title>
+		<title>getStore | @lesjoursfr/browser-tools</title>
 		<meta name="description" content="Documentation for @lesjoursfr/browser-tools" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/style.css" />
@@ -44,30 +44,29 @@
 				<div class="tsd-page-title">
 					<ul class="tsd-breadcrumb">
 						<li><a href="../modules.html">@lesjoursfr/browser-tools</a></li>
-						<li><a href="updateCSSOfElements.html">updateCSSOfElements</a></li>
+						<li><a href="getStore.html">getStore</a></li>
 					</ul>
-					<h1>Function updateCSSOfElements</h1>
+					<h1>Function getStore</h1>
 				</div>
 				<section class="tsd-panel">
 					<ul class="tsd-signatures">
 						<li class="tsd-signature tsd-anchor-link">
-							<a id="updateCSSOfElements" class="tsd-anchor"></a
-							><span class="tsd-kind-call-signature">updateCSSOf<wbr />Elements</span
-							><span class="tsd-signature-symbol">(</span
-							><span class="tsd-kind-parameter">selector</span>,
-							<span class="tsd-kind-parameter">property</span>,
-							<span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">?</span
-							><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
-							><span class="tsd-signature-type">void</span
-							><a href="#updateCSSOfElements" aria-label="Permalink" class="tsd-anchor-icon"
+							<a id="getStore" class="tsd-anchor"></a
+							><span class="tsd-kind-call-signature">get<wbr />Store</span
+							><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">expires</span
+							><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span
+							><span class="tsd-signature-symbol">: </span
+							><a href="../classes/AbstractStorageStore.html" class="tsd-signature-type tsd-kind-class"
+								>AbstractStorageStore</a
+							><a href="#getStore" aria-label="Permalink" class="tsd-anchor-icon"
 								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
 							></a>
 						</li>
 						<li class="tsd-description">
 							<div class="tsd-comment tsd-typography">
 								<p>
-									Update the given CSS property. If the value is <code>null</code> the property will
-									be removed.
+									Get the default store for the browser. The default store is the localStorage if
+									it&#39;s available or the cookies.
 								</p>
 							</div>
 							<div class="tsd-parameters">
@@ -75,65 +74,32 @@
 								<ul class="tsd-parameter-list">
 									<li>
 										<h5>
-											<span class="tsd-kind-parameter">selector</span>:
-											<span class="tsd-signature-type">string</span>
+											<span class="tsd-kind-parameter">expires</span>:
+											<span class="tsd-signature-type">number</span
+											><span class="tsd-signature-symbol"> = 365</span>
 										</h5>
 										<div class="tsd-comment tsd-typography">
-											<p>the CSS selector of the nodes to update</p>
-										</div>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">property</span>:
-											<span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-symbol">{ </span><br /><span>    </span>[<span
-												class="tsd-kind-index-signature"
-												>key</span
-											>: <span class="tsd-signature-type">string</span>]<span
-												class="tsd-signature-symbol"
-												>: </span
-											><span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-type">null</span
-											><span class="tsd-signature-symbol">; </span><br /><span
-												class="tsd-signature-symbol"
-												>}</span
-											>
-										</h5>
-										<div class="tsd-comment tsd-typography">
-											<p>
-												multi-word property names are hyphenated (kebab-case) and not
-												camel-cased.
-											</p>
-										</div>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">value</span>:
-											<span class="tsd-signature-type">null</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> = null</span>
-										</h5>
-										<div class="tsd-comment tsd-typography">
-											<p>(default to <code>null</code>)</p>
+											<p>the expires value for the cookies</p>
 										</div>
 										<div class="tsd-comment tsd-typography"></div>
 									</li>
 								</ul>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">
+								Returns
+								<a href="../classes/AbstractStorageStore.html" class="tsd-signature-type tsd-kind-class"
+									>AbstractStorageStore</a
+								>
+							</h4>
+							<p>the default store</p>
 							<div class="tsd-comment tsd-typography"></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>
 										Defined in
 										<a
-											href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/dom.ts#L125"
-											>dom.ts:125</a
+											href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L101"
+											>storage.ts:101</a
 										>
 									</li>
 								</ul>
@@ -396,7 +362,7 @@
 								>
 							</li>
 							<li>
-								<a href="getStore.html"
+								<a href="getStore.html" class="current"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>getStore</a
 								>

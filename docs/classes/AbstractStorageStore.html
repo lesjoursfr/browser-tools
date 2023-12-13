@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
-		<title>updateCSSOfElements | @lesjoursfr/browser-tools</title>
+		<title>AbstractStorageStore | @lesjoursfr/browser-tools</title>
 		<meta name="description" content="Documentation for @lesjoursfr/browser-tools" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/style.css" />
@@ -44,102 +44,371 @@
 				<div class="tsd-page-title">
 					<ul class="tsd-breadcrumb">
 						<li><a href="../modules.html">@lesjoursfr/browser-tools</a></li>
-						<li><a href="updateCSSOfElements.html">updateCSSOfElements</a></li>
+						<li><a href="AbstractStorageStore.html">AbstractStorageStore</a></li>
 					</ul>
-					<h1>Function updateCSSOfElements</h1>
+					<h1>Class AbstractStorageStore<code class="tsd-tag ts-flagAbstract">Abstract</code></h1>
 				</div>
-				<section class="tsd-panel">
-					<ul class="tsd-signatures">
-						<li class="tsd-signature tsd-anchor-link">
-							<a id="updateCSSOfElements" class="tsd-anchor"></a
-							><span class="tsd-kind-call-signature">updateCSSOf<wbr />Elements</span
-							><span class="tsd-signature-symbol">(</span
-							><span class="tsd-kind-parameter">selector</span>,
-							<span class="tsd-kind-parameter">property</span>,
-							<span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">?</span
-							><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
-							><span class="tsd-signature-type">void</span
-							><a href="#updateCSSOfElements" aria-label="Permalink" class="tsd-anchor-icon"
+				<section class="tsd-panel tsd-hierarchy">
+					<h4>Hierarchy</h4>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">AbstractStorageStore</span>
+							<ul class="tsd-hierarchy">
+								<li>
+									<a href="LesJoursLocalStorageStore.html" class="tsd-signature-type tsd-kind-class"
+										>LesJoursLocalStorageStore</a
+									>
+								</li>
+								<li>
+									<a href="LesJoursCookiesStore.html" class="tsd-signature-type tsd-kind-class"
+										>LesJoursCookiesStore</a
+									>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<aside class="tsd-sources">
+					<ul>
+						<li>
+							Defined in
+							<a href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L8"
+								>storage.ts:8</a
+							>
+						</li>
+					</ul>
+				</aside>
+				<section class="tsd-panel-group tsd-index-group">
+					<section class="tsd-panel tsd-index-panel">
+						<details class="tsd-index-content tsd-index-accordion" open>
+							<summary class="tsd-accordion-summary tsd-index-summary">
+								<h5
+									class="tsd-index-heading uppercase"
+									role="button"
+									aria-expanded="false"
+									tabindex="0"
+								>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+										<use href="#icon-chevronSmall"></use>
+									</svg>
+									Index
+								</h5>
+							</summary>
+							<div class="tsd-accordion-details">
+								<section class="tsd-index-section">
+									<h3 class="tsd-index-heading">Constructors</h3>
+									<div class="tsd-index-list">
+										<a href="AbstractStorageStore.html#constructor" class="tsd-index-link"
+											><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+												<use href="#icon-512"></use></svg
+											><span>constructor</span></a
+										>
+									</div>
+								</section>
+								<section class="tsd-index-section">
+									<h3 class="tsd-index-heading">Properties</h3>
+									<div class="tsd-index-list">
+										<a href="AbstractStorageStore.html#type" class="tsd-index-link"
+											><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+												<use href="#icon-1024"></use></svg
+											><span>type</span></a
+										>
+									</div>
+								</section>
+								<section class="tsd-index-section">
+									<h3 class="tsd-index-heading">Methods</h3>
+									<div class="tsd-index-list">
+										<a href="AbstractStorageStore.html#getItem" class="tsd-index-link"
+											><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+												<use href="#icon-2048"></use></svg
+											><span>get<wbr />Item</span></a
+										>
+										<a href="AbstractStorageStore.html#removeItem" class="tsd-index-link"
+											><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+												<use href="#icon-2048"></use></svg
+											><span>remove<wbr />Item</span></a
+										>
+										<a href="AbstractStorageStore.html#setItem" class="tsd-index-link"
+											><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+												<use href="#icon-2048"></use></svg
+											><span>set<wbr />Item</span></a
+										>
+									</div>
+								</section>
+							</div>
+						</details>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group">
+					<h2>Constructors</h2>
+					<section class="tsd-panel tsd-member">
+						<a id="constructor" class="tsd-anchor"></a>
+						<h3 class="tsd-anchor-link">
+							<span>constructor</span
+							><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"
 								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
 							></a>
-						</li>
-						<li class="tsd-description">
-							<div class="tsd-comment tsd-typography">
-								<p>
-									Update the given CSS property. If the value is <code>null</code> the property will
-									be removed.
-								</p>
-							</div>
-							<div class="tsd-parameters">
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameter-list">
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">selector</span>:
-											<span class="tsd-signature-type">string</span>
-										</h5>
-										<div class="tsd-comment tsd-typography">
-											<p>the CSS selector of the nodes to update</p>
-										</div>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">property</span>:
-											<span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-symbol">{ </span><br /><span>    </span>[<span
-												class="tsd-kind-index-signature"
-												>key</span
-											>: <span class="tsd-signature-type">string</span>]<span
-												class="tsd-signature-symbol"
-												>: </span
-											><span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-type">null</span
-											><span class="tsd-signature-symbol">; </span><br /><span
-												class="tsd-signature-symbol"
-												>}</span
+						</h3>
+						<ul class="tsd-signatures">
+							<li class="tsd-signature tsd-anchor-link">
+								<a id="constructor.new_AbstractStorageStore" class="tsd-anchor"></a
+								><span class="tsd-kind-constructor-signature"
+									>new <wbr />Abstract<wbr />Storage<wbr />Store</span
+								><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">type</span
+								><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
+								><a href="AbstractStorageStore.html" class="tsd-signature-type tsd-kind-class"
+									>AbstractStorageStore</a
+								><a
+									href="#constructor.new_AbstractStorageStore"
+									aria-label="Permalink"
+									class="tsd-anchor-icon"
+									><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+								></a>
+							</li>
+							<li class="tsd-description">
+								<div class="tsd-parameters">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameter-list">
+										<li>
+											<h5>
+												<span class="tsd-kind-parameter">type</span>:
+												<a
+													href="../enums/LesJoursStorageTypes.html"
+													class="tsd-signature-type tsd-kind-enum"
+													>LesJoursStorageTypes</a
+												>
+											</h5>
+										</li>
+									</ul>
+								</div>
+								<h4 class="tsd-returns-title">
+									Returns
+									<a href="AbstractStorageStore.html" class="tsd-signature-type tsd-kind-class"
+										>AbstractStorageStore</a
+									>
+								</h4>
+								<aside class="tsd-sources">
+									<ul>
+										<li>
+											Defined in
+											<a
+												href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L11"
+												>storage.ts:11</a
 											>
-										</h5>
-										<div class="tsd-comment tsd-typography">
-											<p>
-												multi-word property names are hyphenated (kebab-case) and not
-												camel-cased.
-											</p>
-										</div>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">value</span>:
-											<span class="tsd-signature-type">null</span
-											><span class="tsd-signature-symbol"> | </span
-											><span class="tsd-signature-type">string</span
-											><span class="tsd-signature-symbol"> = null</span>
-										</h5>
-										<div class="tsd-comment tsd-typography">
-											<p>(default to <code>null</code>)</p>
-										</div>
-										<div class="tsd-comment tsd-typography"></div>
-									</li>
-								</ul>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							<div class="tsd-comment tsd-typography"></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>
-										Defined in
-										<a
-											href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/dom.ts#L125"
-											>dom.ts:125</a
-										>
-									</li>
-								</ul>
-							</aside>
-						</li>
-					</ul>
+										</li>
+									</ul>
+								</aside>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group">
+					<h2>Properties</h2>
+					<section class="tsd-panel tsd-member">
+						<a id="type" class="tsd-anchor"></a>
+						<h3 class="tsd-anchor-link">
+							<code class="tsd-tag ts-flagReadonly">Readonly</code> <span>type</span
+							><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"
+								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+							></a>
+						</h3>
+						<div class="tsd-signature">
+							<span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span>
+							<a href="../enums/LesJoursStorageTypes.html" class="tsd-signature-type tsd-kind-enum"
+								>LesJoursStorageTypes</a
+							>
+						</div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>
+									Defined in
+									<a href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L9"
+										>storage.ts:9</a
+									>
+								</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group">
+					<h2>Methods</h2>
+					<section class="tsd-panel tsd-member">
+						<a id="getItem" class="tsd-anchor"></a>
+						<h3 class="tsd-anchor-link">
+							<code class="tsd-tag ts-flagAbstract">Abstract</code> <span>get<wbr />Item</span
+							><a href="#getItem" aria-label="Permalink" class="tsd-anchor-icon"
+								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+							></a>
+						</h3>
+						<ul class="tsd-signatures">
+							<li class="tsd-signature tsd-anchor-link">
+								<a id="getItem.getItem-1" class="tsd-anchor"></a
+								><span class="tsd-kind-call-signature">get<wbr />Item</span
+								><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span
+								><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
+								><span class="tsd-signature-type">undefined</span
+								><span class="tsd-signature-symbol"> | </span
+								><span class="tsd-signature-type">string</span
+								><a href="#getItem.getItem-1" aria-label="Permalink" class="tsd-anchor-icon"
+									><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+								></a>
+							</li>
+							<li class="tsd-description">
+								<div class="tsd-comment tsd-typography">
+									<p>Return the key&#39;s value, or null if the key does not exist.</p>
+								</div>
+								<div class="tsd-parameters">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameter-list">
+										<li>
+											<h5>
+												<span class="tsd-kind-parameter">key</span>:
+												<span class="tsd-signature-type">string</span>
+											</h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the name of the key you want to retrieve the value of</p>
+											</div>
+											<div class="tsd-comment tsd-typography"></div>
+										</li>
+									</ul>
+								</div>
+								<h4 class="tsd-returns-title">
+									Returns <span class="tsd-signature-type">undefined</span
+									><span class="tsd-signature-symbol"> | </span
+									><span class="tsd-signature-type">string</span>
+								</h4>
+								<p>the value of the key or undefined if the key does not exist</p>
+								<div class="tsd-comment tsd-typography"></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>
+											Defined in
+											<a
+												href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L20"
+												>storage.ts:20</a
+											>
+										</li>
+									</ul>
+								</aside>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member">
+						<a id="removeItem" class="tsd-anchor"></a>
+						<h3 class="tsd-anchor-link">
+							<code class="tsd-tag ts-flagAbstract">Abstract</code> <span>remove<wbr />Item</span
+							><a href="#removeItem" aria-label="Permalink" class="tsd-anchor-icon"
+								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+							></a>
+						</h3>
+						<ul class="tsd-signatures">
+							<li class="tsd-signature tsd-anchor-link">
+								<a id="removeItem.removeItem-1" class="tsd-anchor"></a
+								><span class="tsd-kind-call-signature">remove<wbr />Item</span
+								><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span
+								><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
+								><span class="tsd-signature-type">void</span
+								><a href="#removeItem.removeItem-1" aria-label="Permalink" class="tsd-anchor-icon"
+									><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+								></a>
+							</li>
+							<li class="tsd-description">
+								<div class="tsd-comment tsd-typography">
+									<p>Remove the key from the store if it exists.</p>
+								</div>
+								<div class="tsd-parameters">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameter-list">
+										<li>
+											<h5>
+												<span class="tsd-kind-parameter">key</span>:
+												<span class="tsd-signature-type">string</span>
+											</h5>
+										</li>
+									</ul>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+								<div class="tsd-comment tsd-typography"></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>
+											Defined in
+											<a
+												href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L33"
+												>storage.ts:33</a
+											>
+										</li>
+									</ul>
+								</aside>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member">
+						<a id="setItem" class="tsd-anchor"></a>
+						<h3 class="tsd-anchor-link">
+							<code class="tsd-tag ts-flagAbstract">Abstract</code> <span>set<wbr />Item</span
+							><a href="#setItem" aria-label="Permalink" class="tsd-anchor-icon"
+								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+							></a>
+						</h3>
+						<ul class="tsd-signatures">
+							<li class="tsd-signature tsd-anchor-link">
+								<a id="setItem.setItem-1" class="tsd-anchor"></a
+								><span class="tsd-kind-call-signature">set<wbr />Item</span
+								><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span>,
+								<span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">)</span
+								><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span
+								><a href="#setItem.setItem-1" aria-label="Permalink" class="tsd-anchor-icon"
+									><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
+								></a>
+							</li>
+							<li class="tsd-description">
+								<div class="tsd-comment tsd-typography">
+									<p>
+										Add the key to the store, or update that key&#39;s value if it already exists.
+									</p>
+								</div>
+								<div class="tsd-parameters">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameter-list">
+										<li>
+											<h5>
+												<span class="tsd-kind-parameter">key</span>:
+												<span class="tsd-signature-type">string</span>
+											</h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the name of the key you want to create/update</p>
+											</div>
+											<div class="tsd-comment tsd-typography"></div>
+										</li>
+										<li>
+											<h5>
+												<span class="tsd-kind-parameter">value</span>:
+												<span class="tsd-signature-type">string</span>
+											</h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the value you want to give the key you are creating/updating</p>
+											</div>
+											<div class="tsd-comment tsd-typography"></div>
+										</li>
+									</ul>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+								<div class="tsd-comment tsd-typography"></div>
+								<aside class="tsd-sources">
+									<ul>
+										<li>
+											Defined in
+											<a
+												href="https://github.com/lesjoursfr/browser-tools/blob/15418e9/src/storage.ts#L27"
+												>storage.ts:27</a
+											>
+										</li>
+									</ul>
+								</aside>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</div>
 			<div class="col-sidebar">
@@ -301,6 +570,54 @@
 							</div>
 						</details>
 					</div>
+					<details open class="tsd-index-accordion tsd-page-navigation">
+						<summary class="tsd-accordion-summary">
+							<h3>
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+									<use href="#icon-chevronDown"></use></svg
+								>On This Page
+							</h3>
+						</summary>
+						<div class="tsd-accordion-details">
+							<ul>
+								<li>
+									<a href="#constructor" class=""
+										><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+											<use href="#icon-512"></use></svg
+										><span>constructor</span></a
+									>
+								</li>
+								<li>
+									<a href="#type" class=""
+										><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+											<use href="#icon-1024"></use></svg
+										><span>type</span></a
+									>
+								</li>
+								<li>
+									<a href="#getItem" class=""
+										><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+											<use href="#icon-2048"></use></svg
+										><span>get<wbr />Item</span></a
+									>
+								</li>
+								<li>
+									<a href="#removeItem" class=""
+										><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+											<use href="#icon-2048"></use></svg
+										><span>remove<wbr />Item</span></a
+									>
+								</li>
+								<li>
+									<a href="#setItem" class=""
+										><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+											<use href="#icon-2048"></use></svg
+										><span>set<wbr />Item</span></a
+									>
+								</li>
+							</ul>
+						</div>
+					</details>
 				</div>
 				<div class="site-menu">
 					<nav class="tsd-navigation">
@@ -316,19 +633,19 @@
 								>
 							</li>
 							<li>
-								<a href="../classes/AbstractStorageStore.html"
+								<a href="AbstractStorageStore.html" class="current"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg
 									>AbstractStorageStore</a
 								>
 							</li>
 							<li>
-								<a href="../classes/LesJoursCookiesStore.html"
+								<a href="LesJoursCookiesStore.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg
 									>LesJoursCookiesStore</a
 								>
 							</li>
 							<li>
-								<a href="../classes/LesJoursLocalStorageStore.html"
+								<a href="LesJoursLocalStorageStore.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg
 									>LesJoursLocalStorageStore</a
 								>
@@ -348,91 +665,91 @@
 								>
 							</li>
 							<li>
-								<a href="addClass.html"
+								<a href="../functions/addClass.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>addClass</a
 								>
 							</li>
 							<li>
-								<a href="addClassToElement.html"
+								<a href="../functions/addClassToElement.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>addClassToElement</a
 								>
 							</li>
 							<li>
-								<a href="addClassToElements.html"
+								<a href="../functions/addClassToElements.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>addClassToElements</a
 								>
 							</li>
 							<li>
-								<a href="createFromTemplate.html"
+								<a href="../functions/createFromTemplate.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>createFromTemplate</a
 								>
 							</li>
 							<li>
-								<a href="createNodeWith.html"
+								<a href="../functions/createNodeWith.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>createNodeWith</a
 								>
 							</li>
 							<li>
-								<a href="debounce.html"
+								<a href="../functions/debounce.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>debounce</a
 								>
 							</li>
 							<li>
-								<a href="getAttribute.html"
+								<a href="../functions/getAttribute.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>getAttribute</a
 								>
 							</li>
 							<li>
-								<a href="getData.html"
+								<a href="../functions/getData.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>getData</a
 								>
 							</li>
 							<li>
-								<a href="getStore.html"
+								<a href="../functions/getStore.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>getStore</a
 								>
 							</li>
 							<li>
-								<a href="hasAttribute.html"
+								<a href="../functions/hasAttribute.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>hasAttribute</a
 								>
 							</li>
 							<li>
-								<a href="hasClass.html"
+								<a href="../functions/hasClass.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>hasClass</a
 								>
 							</li>
 							<li>
-								<a href="hasTagName.html"
+								<a href="../functions/hasTagName.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>hasTagName</a
 								>
 							</li>
 							<li>
-								<a href="is.html"
+								<a href="../functions/is.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>is</a
 								>
 							</li>
 							<li>
-								<a href="isCommentNode.html"
+								<a href="../functions/isCommentNode.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>isCommentNode</a
 								>
 							</li>
 							<li>
-								<a href="isHTMLElement.html"
+								<a href="../functions/isHTMLElement.html"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>isHTMLElement</a
 								>
