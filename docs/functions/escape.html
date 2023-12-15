@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
-		<title>removeNodesRecursively | @lesjoursfr/browser-tools</title>
+		<title>escape | @lesjoursfr/browser-tools</title>
 		<meta name="description" content="Documentation for @lesjoursfr/browser-tools" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/style.css" />
@@ -44,27 +44,27 @@
 				<div class="tsd-page-title">
 					<ul class="tsd-breadcrumb">
 						<li><a href="../modules.html">@lesjoursfr/browser-tools</a></li>
-						<li><a href="removeNodesRecursively.html">removeNodesRecursively</a></li>
+						<li><a href="escape.html">escape</a></li>
 					</ul>
-					<h1>Function removeNodesRecursively</h1>
+					<h1>Function escape</h1>
 				</div>
 				<section class="tsd-panel">
 					<ul class="tsd-signatures">
 						<li class="tsd-signature tsd-anchor-link">
-							<a id="removeNodesRecursively" class="tsd-anchor"></a
-							><span class="tsd-kind-call-signature">remove<wbr />Nodes<wbr />Recursively</span
-							><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span>,
-							<span class="tsd-kind-parameter">callbackFn</span><span class="tsd-signature-symbol">)</span
-							><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span
-							><a href="#removeNodesRecursively" aria-label="Permalink" class="tsd-anchor-icon"
+							<a id="escape" class="tsd-anchor"></a><span class="tsd-kind-call-signature">escape</span
+							><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">string</span
+							><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span
+							><span class="tsd-signature-type">string</span
+							><a href="#escape" aria-label="Permalink" class="tsd-anchor-icon"
 								><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg
 							></a>
 						</li>
 						<li class="tsd-description">
 							<div class="tsd-comment tsd-typography">
 								<p>
-									Remove recursively all node&#39;s child nodes that pass the test implemented by the
-									provided function.
+									Escape the characters &quot;&amp;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;,
+									&#39;&quot;&#39;, and &quot;&#39;&quot; in the given string to their corresponding
+									HTML entities.
 								</p>
 							</div>
 							<div class="tsd-parameters">
@@ -72,68 +72,24 @@
 								<ul class="tsd-parameter-list">
 									<li>
 										<h5>
-											<span class="tsd-kind-parameter">node</span>:
-											<span class="tsd-signature-type">ChildNode</span>
+											<span class="tsd-kind-parameter">string</span>:
+											<span class="tsd-signature-type">string</span>
 										</h5>
-										<div class="tsd-comment tsd-typography"><p>the node to process</p></div>
+										<div class="tsd-comment tsd-typography"><p>the string to escape</p></div>
 										<div class="tsd-comment tsd-typography"></div>
-									</li>
-									<li>
-										<h5>
-											<span class="tsd-kind-parameter">callbackFn</span>:
-											<span class="tsd-signature-symbol">(</span
-											><span class="tsd-signature-symbol">(</span
-											><span class="tsd-kind-parameter">node</span
-											><span class="tsd-signature-symbol">)</span
-											><span class="tsd-signature-symbol"> =&gt; </span
-											><span class="tsd-signature-type">boolean</span
-											><span class="tsd-signature-symbol">)</span>
-										</h5>
-										<div class="tsd-comment tsd-typography"><p>the predicate</p></div>
-										<div class="tsd-comment tsd-typography"></div>
-										<ul class="tsd-parameters">
-											<li class="tsd-parameter-signature">
-												<ul class="tsd-signatures">
-													<li class="tsd-signature">
-														<span class="tsd-signature-symbol">(</span
-														><span class="tsd-kind-parameter">node</span
-														><span class="tsd-signature-symbol">)</span
-														><span class="tsd-signature-symbol">: </span
-														><span class="tsd-signature-type">boolean</span>
-													</li>
-													<li class="tsd-description">
-														<div class="tsd-parameters">
-															<h4 class="tsd-parameters-title">Parameters</h4>
-															<ul class="tsd-parameter-list">
-																<li>
-																	<h5>
-																		<span class="tsd-kind-parameter">node</span>:
-																		<span class="tsd-signature-type"
-																			>ChildNode</span
-																		>
-																	</h5>
-																</li>
-															</ul>
-														</div>
-														<h4 class="tsd-returns-title">
-															Returns <span class="tsd-signature-type">boolean</span>
-														</h4>
-													</li>
-												</ul>
-											</li>
-										</ul>
 									</li>
 								</ul>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the escaped string</p>
 							<div class="tsd-comment tsd-typography"></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>
 										Defined in
 										<a
-											href="https://github.com/lesjoursfr/browser-tools/blob/57fa921/src/dom.ts#L492"
-											>dom.ts:492</a
+											href="https://github.com/lesjoursfr/browser-tools/blob/57fa921/src/utils.ts#L16"
+											>utils.ts:16</a
 										>
 									</li>
 								</ul>
@@ -384,7 +340,7 @@
 								>
 							</li>
 							<li>
-								<a href="escape.html"
+								<a href="escape.html" class="current"
 									><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg
 									>escape</a
 								>
