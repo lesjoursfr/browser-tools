@@ -35,35 +35,35 @@ import {
   updateCSSOfElements,
 } from "../src/dom.js";
 
-it("core.dom.isCommentNode", () => {
+it("dom.isCommentNode", () => {
   const template = "<div><!--Comment Node-->Text Node<p>HTML Element</p></div>";
   const node = createFromTemplate(template);
 
   assert.strictEqual(isCommentNode(node.childNodes[0]), true);
 });
 
-it("core.dom.isTextNode", () => {
+it("dom.isTextNode", () => {
   const template = "<div><!--Comment Node-->Text Node<p>HTML Element</p></div>";
   const node = createFromTemplate(template);
 
   assert.strictEqual(isTextNode(node.childNodes[1]), true);
 });
 
-it("core.dom.isHTMLElement", () => {
+it("dom.isHTMLElement", () => {
   const template = "<div><!--Comment Node-->Text Node<p>HTML Element</p></div>";
   const node = createFromTemplate(template);
 
   assert.strictEqual(isHTMLElement(node.childNodes[2]), true);
 });
 
-it("core.dom.createFromTemplate", () => {
+it("dom.createFromTemplate", () => {
   const template = '<p class="bar" foo="bar">Hello world</p>';
   const node = createFromTemplate(template);
 
   assert.strictEqual(node.outerHTML, template);
 });
 
-it("core.dom.updateCSS", () => {
+it("dom.updateCSS", () => {
   document.body.innerHTML = "<div></div>";
   const node = document.querySelector("div")!;
 
@@ -98,7 +98,7 @@ it("core.dom.updateCSS", () => {
   assert.strictEqual(node.style.textAlign, "");
 });
 
-it("core.dom.updateCSSOfElement", () => {
+it("dom.updateCSSOfElement", () => {
   document.body.innerHTML = '<div id="foo"></div>';
   const node = document.getElementById("foo")!;
 
@@ -133,7 +133,7 @@ it("core.dom.updateCSSOfElement", () => {
   assert.strictEqual(node.style.textAlign, "");
 });
 
-it("core.dom.updateCSSOfElements", () => {
+it("dom.updateCSSOfElements", () => {
   document.body.innerHTML = '<div class="foo"></div>';
   const node = document.querySelector<HTMLElement>(".foo")!;
 
@@ -168,21 +168,21 @@ it("core.dom.updateCSSOfElements", () => {
   assert.strictEqual(node.style.textAlign, "");
 });
 
-it("core.dom.hasAttribute", () => {
+it("dom.hasAttribute", () => {
   document.body.innerHTML = '<p class="bar" foo="bar">Hello world</p>';
   const node = document.querySelector("p")!;
 
   assert.strictEqual(hasAttribute(node, "foo"), true);
 });
 
-it("core.dom.getAttribute", () => {
+it("dom.getAttribute", () => {
   document.body.innerHTML = '<p class="bar" foo="bar">Hello world</p>';
   const node = document.querySelector("p")!;
 
   assert.strictEqual(getAttribute(node, "foo"), "bar");
 });
 
-it("core.dom.setAttribute", () => {
+it("dom.setAttribute", () => {
   document.body.innerHTML = '<p class="bar" foo="bar">Hello world</p>';
   const node = document.querySelector("p")!;
 
@@ -193,7 +193,7 @@ it("core.dom.setAttribute", () => {
   assert.strictEqual(node.getAttribute("bar"), "foo");
 });
 
-it("core.dom.getData", () => {
+it("dom.getData", () => {
   document.body.innerHTML = '<p class="bar" data-key="value" data-dashed-key="dashed">Hello world</p>';
   const node = document.querySelector("p")!;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -205,7 +205,7 @@ it("core.dom.getData", () => {
   assert.strictEqual(dashed, "dashed");
 });
 
-it("core.dom.setData", () => {
+it("dom.setData", () => {
   document.body.innerHTML = '<p class="bar" data-key="value">Hello world</p>';
   const node = document.querySelector("p")!;
   setData(node, "key", "bar");
@@ -215,7 +215,7 @@ it("core.dom.setData", () => {
   assert.strictEqual(getData(node, "foo"), "bar");
 });
 
-it("core.dom.hasTagName", () => {
+it("dom.hasTagName", () => {
   document.body.innerHTML = "<p>Hello world</p>";
   const node = document.querySelector("p")!;
 
@@ -225,7 +225,7 @@ it("core.dom.hasTagName", () => {
   assert.strictEqual(hasTagName(node, ["i", "u", "p"]), true);
 });
 
-it("core.dom.hasClass", () => {
+it("dom.hasClass", () => {
   document.body.innerHTML = '<p class="bar">Hello world</p>';
   const node = document.querySelector("p")!;
 
@@ -233,7 +233,7 @@ it("core.dom.hasClass", () => {
   assert.strictEqual(hasClass(node, "bar"), true);
 });
 
-it("core.dom.addClass", () => {
+it("dom.addClass", () => {
   document.body.innerHTML = '<p class="bar">Hello world</p>';
   const node = document.querySelector("p")!;
   addClass(node, "foo");
@@ -246,7 +246,7 @@ it("core.dom.addClass", () => {
   );
 });
 
-it("core.dom.addClassToElement", () => {
+it("dom.addClassToElement", () => {
   document.body.innerHTML = '<p id="id" class="bar">Hello world</p>';
   const node = document.getElementById("id")!;
   addClassToElement("id", "foo");
@@ -259,7 +259,7 @@ it("core.dom.addClassToElement", () => {
   );
 });
 
-it("core.dom.addClassToElements", () => {
+it("dom.addClassToElements", () => {
   document.body.innerHTML = '<p class="bar">Hello world</p>';
   const node = document.querySelector(".bar")!;
   addClassToElements(".bar", "foo");
@@ -272,7 +272,7 @@ it("core.dom.addClassToElements", () => {
   );
 });
 
-it("core.dom.removeClass", () => {
+it("dom.removeClass", () => {
   document.body.innerHTML = '<p class="bar foo abc def">Hello world</p>';
   const node = document.querySelector("p")!;
   removeClass(node, "foo");
@@ -285,7 +285,7 @@ it("core.dom.removeClass", () => {
   );
 });
 
-it("core.dom.removeClassFromElement", () => {
+it("dom.removeClassFromElement", () => {
   document.body.innerHTML = '<p id="id" class="bar foo abc def">Hello world</p>';
   const node = document.getElementById("id")!;
   removeClassFromElement("id", "foo");
@@ -298,7 +298,7 @@ it("core.dom.removeClassFromElement", () => {
   );
 });
 
-it("core.dom.removeClassFromElements", () => {
+it("dom.removeClassFromElements", () => {
   document.body.innerHTML = '<p class="bar foo abc def">Hello world</p>';
   const node = document.querySelector(".bar")!;
   removeClassFromElements(".bar", "foo");
@@ -311,14 +311,14 @@ it("core.dom.removeClassFromElements", () => {
   );
 });
 
-it("core.dom.is", () => {
+it("dom.is", () => {
   document.body.innerHTML = '<p class="bar">Hello world</p>';
   const node = document.querySelector("p")!;
 
   assert.strictEqual(is(node, "p.bar"), true);
 });
 
-it("core.dom.createNodeWith", () => {
+it("dom.createNodeWith", () => {
   const node1 = createNodeWith("span", {
     innerHTML: "<b>Bold text</b>",
     attributes: { attr1: "value1", attr2: "value2" },
@@ -332,7 +332,7 @@ it("core.dom.createNodeWith", () => {
   assert.strictEqual(node2.outerHTML, '<span attr1="value1" attr2="value2">Simple text</span>');
 });
 
-it("core.dom.replaceNodeWith", () => {
+it("dom.replaceNodeWith", () => {
   document.body.innerHTML = "<p>Hello world</p>";
   const node = document.createElement("span");
   node.textContent = "Simple text";
@@ -341,7 +341,7 @@ it("core.dom.replaceNodeWith", () => {
   assert.strictEqual(document.body.innerHTML, "<span>Simple text</span>");
 });
 
-it("core.dom.unwrapNode", () => {
+it("dom.unwrapNode", () => {
   document.body.innerHTML = "<div><b>Hello world</b>, this is a simple text</div>";
 
   const newNodes = unwrapNode(document.querySelector("div")!);
@@ -352,14 +352,14 @@ it("core.dom.unwrapNode", () => {
   assert.strictEqual(newNodes[1].textContent, ", this is a simple text");
 });
 
-it("core.dom.textifyNode", () => {
+it("dom.textifyNode", () => {
   document.body.innerHTML = "<div><b>Hello world</b>, this is a simple text</div>";
 
   textifyNode(document.querySelector("div")!);
   assert.strictEqual(document.body.innerHTML, "Hello world, this is a simple text");
 });
 
-it("core.dom.isSelfClosing", () => {
+it("dom.isSelfClosing", () => {
   assert.strictEqual(isSelfClosing("I"), false);
   assert.strictEqual(isSelfClosing("B"), false);
   assert.strictEqual(isSelfClosing("P"), false);
@@ -368,14 +368,14 @@ it("core.dom.isSelfClosing", () => {
   assert.strictEqual(isSelfClosing("IMG"), true);
 });
 
-it("core.dom.removeNodes", () => {
+it("dom.removeNodes", () => {
   document.body.innerHTML = "<div></div><p>Hello world</p><span></span>";
 
   removeNodes(document.body, (el) => el.nodeType === Node.ELEMENT_NODE && (el as HTMLElement).tagName !== "P");
   assert.strictEqual(document.body.innerHTML, "<p>Hello world</p>");
 });
 
-it("core.dom.removeNodesRecursively", () => {
+it("dom.removeNodesRecursively", () => {
   document.body.innerHTML =
     "<div><span></span></div><p>This is a simple text with <i>italic text<span></span></i> and empty tags<b></b></p><span></span>";
 
@@ -386,21 +386,21 @@ it("core.dom.removeNodesRecursively", () => {
   assert.strictEqual(document.body.innerHTML, "<p>This is a simple text with <i>italic text</i> and empty tags</p>");
 });
 
-it("core.dom.removeEmptyTextNodes", () => {
+it("dom.removeEmptyTextNodes", () => {
   document.body.innerHTML = "<p>Hello world <b> </b></p> <!-- Comments --> <div> </div>";
 
   removeEmptyTextNodes(document.body);
   assert.strictEqual(document.body.innerHTML, "<p>Hello world <b> </b></p><!-- Comments --><div> </div>");
 });
 
-it("core.dom.removeCommentNodes", () => {
+it("dom.removeCommentNodes", () => {
   document.body.innerHTML = "<p>Hello world <b> </b></p> <!-- Comments --> <div> </div>";
 
   removeCommentNodes(document.body);
   assert.strictEqual(document.body.innerHTML, "<p>Hello world <b> </b></p>  <div> </div>");
 });
 
-it("core.dom.resetAttributesTo", () => {
+it("dom.resetAttributesTo", () => {
   const node = document.createElement("span");
   node.setAttribute("attr1", "value1");
   node.setAttribute("attr2", "value2");
@@ -414,7 +414,7 @@ it("core.dom.resetAttributesTo", () => {
   assert.strictEqual(node.outerHTML, "<span>Simple text</span>");
 });
 
-it("core.dom.replaceNodeStyleByTag", () => {
+it("dom.replaceNodeStyleByTag", () => {
   let node = document.createElement("b");
   node.setAttribute("style", "font-weight: normal;");
   node.textContent = "Simple text";
@@ -437,7 +437,7 @@ it("core.dom.replaceNodeStyleByTag", () => {
   assert.strictEqual(node.outerHTML, '<i><span style="">Simple text</span></i>');
 });
 
-it("core.dom.trimTag", () => {
+it("dom.trimTag", () => {
   document.body.innerHTML = "<div></div><div></div><p>Hello world</p><div></div><span>Simple text</span><div></div>";
 
   trimTag(document.body, "div");
