@@ -1,9 +1,9 @@
 "use strict";
 "use strict";
 (() => {
-  var Pe = Object.create;
+  var Ie = Object.create;
   var ne = Object.defineProperty;
-  var Ie = Object.getOwnPropertyDescriptor;
+  var Pe = Object.getOwnPropertyDescriptor;
   var Oe = Object.getOwnPropertyNames;
   var _e = Object.getPrototypeOf,
     Re = Object.prototype.hasOwnProperty;
@@ -11,11 +11,11 @@
   var Fe = (t, e, n, r) => {
     if ((e && typeof e == "object") || typeof e == "function")
       for (let i of Oe(e))
-        !Re.call(t, i) && i !== n && ne(t, i, { get: () => e[i], enumerable: !(r = Ie(e, i)) || r.enumerable });
+        !Re.call(t, i) && i !== n && ne(t, i, { get: () => e[i], enumerable: !(r = Pe(e, i)) || r.enumerable });
     return t;
   };
   var De = (t, e, n) => (
-    (n = t != null ? Pe(_e(t)) : {}),
+    (n = t != null ? Ie(_e(t)) : {}),
     Fe(e || !t || !t.__esModule ? ne(n, "default", { value: t, enumerable: !0 }) : n, t)
   );
   var ae = Me((se, oe) => {
@@ -347,18 +347,18 @@
           w = /.$/,
           k = /(at|bl|iz)$/,
           _ = new RegExp("([^aeiouylsz])\\1$"),
-          H = new RegExp("^" + s + i + "[^aeiouwxy]$"),
+          B = new RegExp("^" + s + i + "[^aeiouwxy]$"),
           A = /^(.+?[^aeiou])y$/,
           j =
             /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/,
           $ = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/,
           N = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,
           q = /^(.+?)(s|t)(ion)$/,
-          P = /^(.+?)e$/,
+          I = /^(.+?)e$/,
           z = /ll$/,
           W = new RegExp("^" + s + i + "[^aeiouwxy]$"),
           V = function (c) {
-            var y, I, T, h, x, O, M;
+            var y, P, T, h, x, O, M;
             if (c.length < 3) return c;
             if (
               ((T = c.substr(0, 1)),
@@ -380,7 +380,7 @@
                   ((c = y),
                   (x = k),
                   (O = _),
-                  (M = H),
+                  (M = B),
                   x.test(c)
                     ? (c = c + "e")
                     : O.test(c)
@@ -393,11 +393,11 @@
             }
             if (((h = j), h.test(c))) {
               var E = h.exec(c);
-              (y = E[1]), (I = E[2]), (h = v), h.test(y) && (c = y + e[I]);
+              (y = E[1]), (P = E[2]), (h = v), h.test(y) && (c = y + e[P]);
             }
             if (((h = $), h.test(c))) {
               var E = h.exec(c);
-              (y = E[1]), (I = E[2]), (h = v), h.test(y) && (c = y + n[I]);
+              (y = E[1]), (P = E[2]), (h = v), h.test(y) && (c = y + n[P]);
             }
             if (((h = N), (x = q), h.test(c))) {
               var E = h.exec(c);
@@ -406,7 +406,7 @@
               var E = x.exec(c);
               (y = E[1] + E[2]), (x = f), x.test(y) && (c = y);
             }
-            if (((h = P), h.test(c))) {
+            if (((h = I), h.test(c))) {
               var E = h.exec(c);
               (y = E[1]), (h = f), (x = b), (O = W), (h.test(y) || (x.test(y) && !O.test(y))) && (c = y);
             }
@@ -755,8 +755,8 @@
               for (var S = 0; S < L.length; S++)
                 for (var w = L[S], k = this.invertedIndex[w], _ = k._index, p = 0; p < u.fields.length; p++) {
                   var m = u.fields[p],
-                    H = k[m],
-                    A = Object.keys(H),
+                    B = k[m],
+                    A = Object.keys(B),
                     j = w + "/" + m,
                     $ = new t.Set(A);
                   if (
@@ -775,10 +775,10 @@
                   ) {
                     for (var N = 0; N < A.length; N++) {
                       var q = A[N],
-                        P = new t.FieldRef(q, m),
-                        z = H[q],
+                        I = new t.FieldRef(q, m),
+                        z = B[q],
                         W;
-                      (W = r[P]) === void 0 ? (r[P] = new t.MatchData(w, m, z)) : W.add(w, m, z);
+                      (W = r[I]) === void 0 ? (r[I] = new t.MatchData(w, m, z)) : W.add(w, m, z);
                     }
                     s[j] = !0;
                   }
@@ -796,13 +796,13 @@
           }
           var c = Object.keys(r),
             y = [],
-            I = Object.create(null);
+            P = Object.create(null);
           if (n.isNegated()) {
             c = Object.keys(this.fieldVectors);
             for (var l = 0; l < c.length; l++) {
-              var P = c[l],
-                T = t.FieldRef.fromString(P);
-              r[P] = new t.MatchData();
+              var I = c[l],
+                T = t.FieldRef.fromString(I);
+              r[I] = new t.MatchData();
             }
           }
           for (var l = 0; l < c.length; l++) {
@@ -812,10 +812,10 @@
               var x = this.fieldVectors[T],
                 O = i[T.fieldName].similarity(x),
                 M;
-              if ((M = I[h]) !== void 0) (M.score += O), M.matchData.combine(r[T]);
+              if ((M = P[h]) !== void 0) (M.score += O), M.matchData.combine(r[T]);
               else {
                 var E = { ref: h, score: O, matchData: r[T] };
-                (I[h] = E), y.push(E);
+                (P[h] = E), y.push(E);
               }
             }
           }
@@ -1592,9 +1592,9 @@
         (o = n.indexOf(r, s));
     return i.push(K(t.substring(s))), i.join("");
   }
-  var Be = { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" };
+  var He = { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" };
   function K(t) {
-    return t.replace(/[&<>"'"]/g, (e) => Be[e]);
+    return t.replace(/[&<>"'"]/g, (e) => He[e]);
   }
   var C = class {
     constructor(e) {
@@ -1603,17 +1603,17 @@
   };
   var F = "mousedown",
     pe = "mousemove",
-    B = "mouseup",
+    H = "mouseup",
     J = { x: 0, y: 0 },
     fe = !1,
     ee = !1,
-    He = !1,
+    Be = !1,
     D = !1,
     me = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   document.documentElement.classList.add(me ? "is-mobile" : "not-mobile");
   me &&
     "ontouchstart" in document.documentElement &&
-    ((He = !0), (F = "touchstart"), (pe = "touchmove"), (B = "touchend"));
+    ((Be = !0), (F = "touchstart"), (pe = "touchmove"), (H = "touchend"));
   document.addEventListener(F, (t) => {
     (ee = !0), (D = !1);
     let e = F == "touchstart" ? t.targetTouches[0] : t;
@@ -1627,7 +1627,7 @@
       D = Math.sqrt(n * n + r * r) > 10;
     }
   });
-  document.addEventListener(B, () => {
+  document.addEventListener(H, () => {
     ee = !1;
   });
   document.addEventListener("click", (t) => {
@@ -1637,10 +1637,10 @@
     constructor(e) {
       super(e),
         (this.className = this.el.dataset.toggle || ""),
-        this.el.addEventListener(B, (n) => this.onPointerUp(n)),
+        this.el.addEventListener(H, (n) => this.onPointerUp(n)),
         this.el.addEventListener("click", (n) => n.preventDefault()),
         document.addEventListener(F, (n) => this.onDocumentPointerDown(n)),
-        document.addEventListener(B, (n) => this.onDocumentPointerUp(n));
+        document.addEventListener(H, (n) => this.onDocumentPointerUp(n));
     }
     setActive(e) {
       if (this.active == e) return;
@@ -1695,7 +1695,7 @@
         this.setLocalStorage(this.fromLocalStorage()),
         (ve.innerHTML += `html:not(.${this.key}) .tsd-is-${this.el.name} { display: none; }
 `),
-        this.handleValueChange();
+        this.updateIndexHeadingVisibility();
     }
     fromLocalStorage() {
       let e = Q.getItem(this.key);
@@ -1708,11 +1708,18 @@
       (this.el.checked = this.value),
         document.documentElement.classList.toggle(this.key, this.value),
         this.app.filterChanged(),
-        document.querySelectorAll(".tsd-index-section").forEach((e) => {
-          e.style.display = "block";
-          let n = Array.from(e.querySelectorAll(".tsd-index-link")).every((r) => r.offsetParent == null);
-          e.style.display = n ? "none" : "block";
-        });
+        this.updateIndexHeadingVisibility();
+    }
+    updateIndexHeadingVisibility() {
+      let e = document.querySelector(".tsd-index-content"),
+        n = e?.open;
+      e && (e.open = !0),
+        document.querySelectorAll(".tsd-index-section").forEach((r) => {
+          r.style.display = "block";
+          let i = Array.from(r.querySelectorAll(".tsd-index-link")).every((s) => s.offsetParent == null);
+          r.style.display = i ? "none" : "block";
+        }),
+        e && (e.open = n);
     }
   };
   var Z = class extends C {
@@ -1720,9 +1727,7 @@
       super(e),
         (this.summary = this.el.querySelector(".tsd-accordion-summary")),
         (this.icon = this.summary.querySelector("svg")),
-        (this.key = `tsd-accordion-${
-          this.summary.dataset.key ?? this.summary.textContent.trim().replace(/\s+/g, "-").toLowerCase()
-        }`);
+        (this.key = `tsd-accordion-${this.summary.dataset.key ?? this.summary.textContent.trim().replace(/\s+/g, "-").toLowerCase()}`);
       let n = Q.getItem(this.key);
       (this.el.open = n ? n === "true" : this.el.open), this.el.addEventListener("toggle", () => this.update());
       let r = this.summary.querySelector("a");
