@@ -28,7 +28,7 @@ export abstract class AbstractKeyValueStore {
 
   /**
    * Remove the key from the store if it exists.
-   * @param {string} keythe name of the key you want to remove
+   * @param {string} key the name of the key you want to remove
    */
   public abstract removeItem(key: string): void;
 }

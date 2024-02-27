@@ -108,7 +108,7 @@ export function on(
 
 /**
  * Remove event listeners from the node.
- * @param {Window|Document|HTMLElement|NodeList} node
+ * @param {Window|Document|HTMLElement|NodeList} nodes
  * @param {string} events
  * @param {Function|undefined} handler
  */
