@@ -80,10 +80,18 @@ export function updateCSS(
 ): HTMLElement {
   if (typeof property !== "string") {
     for (const [key, val] of Object.entries(property)) {
-      val !== null ? node.style.setProperty(key, val) : node.style.removeProperty(key);
+      if (val !== null) {
+        node.style.setProperty(key, val);
+      } else {
+        node.style.removeProperty(key);
+      }
     }
   } else {
-    value !== null ? node.style.setProperty(property, value) : node.style.removeProperty(property);
+    if (value !== null) {
+      node.style.setProperty(property, value);
+    } else {
+      node.style.removeProperty(property);
+    }
   }
 
   return node;
@@ -108,10 +116,18 @@ export function updateCSSOfElement(
 
   if (typeof property !== "string") {
     for (const [key, val] of Object.entries(property)) {
-      val !== null ? node.style.setProperty(key, val) : node.style.removeProperty(key);
+      if (val !== null) {
+        node.style.setProperty(key, val);
+      } else {
+        node.style.removeProperty(key);
+      }
     }
   } else {
-    value !== null ? node.style.setProperty(property, value) : node.style.removeProperty(property);
+    if (value !== null) {
+      node.style.setProperty(property, value);
+    } else {
+      node.style.removeProperty(property);
+    }
   }
 }
 
@@ -131,12 +147,20 @@ export function updateCSSOfElements(
   if (typeof property !== "string") {
     for (const node of nodes) {
       for (const [key, val] of Object.entries(property)) {
-        val !== null ? node.style.setProperty(key, val) : node.style.removeProperty(key);
+        if (val !== null) {
+          node.style.setProperty(key, val);
+        } else {
+          node.style.removeProperty(key);
+        }
       }
     }
   } else {
     for (const node of nodes) {
-      value !== null ? node.style.setProperty(property, value) : node.style.removeProperty(property);
+      if (value !== null) {
+        node.style.setProperty(property, value);
+      } else {
+        node.style.removeProperty(property);
+      }
     }
   }
 }

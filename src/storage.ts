@@ -84,7 +84,7 @@ export function isLocalStorageAvailable(): boolean {
     localStorage.setItem(mod, mod);
     localStorage.removeItem(mod);
     return true;
-  } catch (e) {
+  } catch (_err) {
     return false;
   }
 }
