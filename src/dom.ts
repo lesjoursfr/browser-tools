@@ -222,7 +222,7 @@ export function getData(node: HTMLElement, key?: string): BrowserToolsDataType |
     }
   }
 
-  return key === undefined ? node.ljbtData : node.ljbtData[dashedToCamel(key)] ?? null;
+  return key === undefined ? node.ljbtData : (node.ljbtData[dashedToCamel(key)] ?? null);
 }
 
 /**
