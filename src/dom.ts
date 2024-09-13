@@ -57,12 +57,21 @@ export function isHTMLElement(node: Node): node is HTMLElement {
 /**
  * Create an HTMLElement from the HTML template.
  * @param {string} template the HTML template
+ * @returns {DocumentFragment} The created DocumentFragment
+ */
+export function createFragmentFromTemplate(template: string): DocumentFragment {
+  const range = document.createRange();
+  range.selectNode(document.body);
+  return range.createContextualFragment(template);
+}
+
+/**
+ * Create an HTMLElement from the HTML template.
+ * @param {string} template the HTML template
  * @returns {HTMLElement} the created HTMLElement
  */
 export function createFromTemplate(template: string): HTMLElement {
-  const range = document.createRange();
-  range.selectNode(document.body);
-  return range.createContextualFragment(template).children[0] as HTMLElement;
+  return createFragmentFromTemplate(template).children[0] as HTMLElement;
 }
 
 /**
@@ -638,5 +647,47 @@ export function trimTag(node: HTMLElement, tag: string): void {
   // Remove Trailing
   while (children.length > 0 && isTagElement(children[children.length - 1], tag)) {
     children[children.length - 1].remove();
+  }
+}
+
+/**
+ * Replaces text in a string, using a regular expression or search string.
+ * @param {HTMLElement} node the node to process
+ * @param {string | RegExp} searchValue A string or regular expression to search for. If searchValue is a regex, then it must have the global (g) flag set, or a TypeError is thrown.
+ * @param {string | Function} replacer A string containing the text to replace or a function that returns the replacement text.
+ * @param {boolean} textOnly If true, any HTML will be rendered as text. Defaults to false
+ */
+export function replaceAllText(
+  node: HTMLElement,
+  searchValue: string | RegExp,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  replacer: string | ((substring: string, ...args: any[]) => string),
+  textOnly = false
+): void {
+  for (const child of [...node.childNodes]) {
+    // Check the type of the node
+    if (child.nodeType === Node.TEXT_NODE) {
+      // The original node value.
+      const val: string = child.textContent!;
+
+      // The new value.
+      // @ts-expect-error: Weird TS error on the replacer parameter
+      const newVal: string = val.replaceAll(searchValue, replacer);
+
+      // Only replace text if the new value is actually different!
+      if (newVal !== val) {
+        if (!textOnly && (/</.test(newVal) || /&[^;]+;/.test(newVal))) {
+          // The new value contains HTML or an HTML entity, we need to replace the node
+          child.parentNode!.insertBefore(createFragmentFromTemplate(newVal), child);
+          child.remove();
+        } else {
+          // The new value contains no HTML, so it can be set in the same node
+          child.textContent = newVal;
+        }
+      }
+    } else if (child.nodeType === Node.ELEMENT_NODE) {
+      // Let's process the Node with the same parameters
+      replaceAllText(child as HTMLElement, searchValue, replacer, textOnly);
+    }
   }
 }

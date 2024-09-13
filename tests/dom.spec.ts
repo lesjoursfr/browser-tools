@@ -3,6 +3,7 @@ import {
   addClass,
   addClassToElement,
   addClassToElements,
+  createFragmentFromTemplate,
   createFromTemplate,
   createNodeWith,
   getAttribute,
@@ -22,6 +23,7 @@ import {
   removeEmptyTextNodes,
   removeNodes,
   removeNodesRecursively,
+  replaceAllText,
   replaceNodeStyleByTag,
   replaceNodeWith,
   resetAttributesTo,
@@ -54,6 +56,16 @@ it("dom.isHTMLElement", () => {
   const node = createFromTemplate(template);
 
   assert.strictEqual(isHTMLElement(node.childNodes[2]), true);
+});
+
+it("dom.createFragmentFromTemplate", () => {
+  const template = '<p class="bar" foo="bar">Hello world</p><br /><p class="foo">Bar</p>';
+  const fragment = createFragmentFromTemplate(template);
+
+  const [p1Node, brNode, p2Node] = fragment.children;
+  assert.strictEqual(p1Node.outerHTML, '<p class="bar" foo="bar">Hello world</p>');
+  assert.strictEqual(brNode.outerHTML, "<br>");
+  assert.strictEqual(p2Node.outerHTML, '<p class="foo">Bar</p>');
 });
 
 it("dom.createFromTemplate", () => {
@@ -442,4 +454,23 @@ it("dom.trimTag", () => {
 
   trimTag(document.body, "div");
   assert.strictEqual(document.body.innerHTML, "<p>Hello world</p><div></div><span>Simple text</span>");
+});
+
+it("dom.replaceAllText", () => {
+  const template = `<p>Lorem ipsum dolor sit amet sea est imperdiet vel amet dolores amet elitr. <i class="test">Et eirmod dolore aliquyam eirmod ipsum rebum at labore clita dolores at ut.</i> Invidunt voluptua diam dolor <b>clita et aliquyam <a href="#" title="title">lorem et justo</a> ut no amet ipsum</b> ut rebum nostrud et.</p>`;
+  const node = createFromTemplate(template);
+
+  assert.throws(() => replaceAllText(node, /dolor/, "lorem"));
+
+  replaceAllText(node, "dolor", "lorem");
+  assert.strictEqual(
+    node.outerHTML,
+    `<p>Lorem ipsum lorem sit amet sea est imperdiet vel amet loremes amet elitr. <i class="test">Et eirmod loreme aliquyam eirmod ipsum rebum at labore clita loremes at ut.</i> Invidunt voluptua diam lorem <b>clita et aliquyam <a href="#" title="title">lorem et justo</a> ut no amet ipsum</b> ut rebum nostrud et.</p>`
+  );
+
+  replaceAllText(node, /lorem/gi, `<span class="foo">lorem</span>`);
+  assert.strictEqual(
+    node.outerHTML,
+    `<p><span class="foo">lorem</span> ipsum <span class="foo">lorem</span> sit amet sea est imperdiet vel amet <span class="foo">lorem</span>es amet elitr. <i class="test">Et eirmod <span class="foo">lorem</span>e aliquyam eirmod ipsum rebum at labore clita <span class="foo">lorem</span>es at ut.</i> Invidunt voluptua diam <span class="foo">lorem</span> <b>clita et aliquyam <a href="#" title="title"><span class="foo">lorem</span> et justo</a> ut no amet ipsum</b> ut rebum nostrud et.</p>`
+  );
 });
