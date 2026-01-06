@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
-		<title>resetAttributesTo | @lesjoursfr/browser-tools</title>
+		<title>replaceAllText | @lesjoursfr/browser-tools</title>
 		<meta name="description" content="Documentation for @lesjoursfr/browser-tools" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/style.css" />
@@ -56,39 +56,53 @@
 			<div class="col-content">
 				<div class="tsd-page-title">
 					<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
-						<li><a href="" aria-current="page">resetAttributesTo</a></li>
+						<li><a href="" aria-current="page">replaceAllText</a></li>
 					</ul>
-					<h1>Function resetAttributesTo</h1>
+					<h1>Function replaceAllText</h1>
 				</div>
 				<section class="tsd-panel">
 					<ul class="tsd-signatures">
 						<li class="">
-							<div class="tsd-signature tsd-anchor-link" id="resetattributesto">
-								<span class="tsd-kind-call-signature">resetAttributesTo</span
+							<div class="tsd-signature tsd-anchor-link" id="replacealltext">
+								<span class="tsd-kind-call-signature">replaceAllText</span
 								><span class="tsd-signature-symbol">(</span><br />    <span class="tsd-kind-parameter"
 									>node</span
 								><span class="tsd-signature-symbol">:</span>
 								<span class="tsd-signature-type">HTMLElement</span
 								><span class="tsd-signature-symbol">,</span><br />    <span class="tsd-kind-parameter"
-									>targetAttributes</span
-								><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span>
-								<span class="tsd-signature-symbol">[</span
-								><span class="tsd-kind-index-signature">keyof</span
+									>searchValue</span
+								><span class="tsd-signature-symbol">:</span>
+								<span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol">|</span>
+								<span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">,</span
+								><br />    <span class="tsd-kind-parameter">replacer</span
+								><span class="tsd-signature-symbol">:</span>
+								<span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol">|</span> (<span class="tsd-signature-symbol">(</span
+								><span class="tsd-kind-parameter">substring</span
 								><span class="tsd-signature-symbol">:</span>
 								<span class="tsd-signature-type">string</span
-								><span class="tsd-signature-symbol">]:</span>
-								<span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">,</span
-								><br /><span class="tsd-signature-symbol">)</span
+								><span class="tsd-signature-symbol">,</span>
+								<span class="tsd-signature-symbol">...</span><span class="tsd-kind-parameter">args</span
+								><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span
+								><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span>
+								<span class="tsd-signature-symbol">=&gt;</span>
+								<span class="tsd-signature-type">string</span>)<span class="tsd-signature-symbol"
+									>,</span
+								><br />    <span class="tsd-kind-parameter">textOnly</span
+								><span class="tsd-signature-symbol">?:</span>
+								<span class="tsd-signature-type">boolean</span
+								><span class="tsd-signature-symbol">,</span><br /><span class="tsd-signature-symbol"
+									>)</span
 								><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span
-								><a href="#resetattributesto" aria-label="Permalink" class="tsd-anchor-icon"
+								><a href="#replacealltext" aria-label="Permalink" class="tsd-anchor-icon"
 									><svg viewBox="0 0 24 24" aria-hidden="true">
 										<use href="../assets/icons.svg#icon-anchor"></use></svg
 								></a>
 							</div>
 							<div class="tsd-description">
 								<div class="tsd-comment tsd-typography">
-									<p>Reset all node's attributes to the given list.</p>
+									<p>Replaces text in a string, using a regular expression or search string.</p>
 								</div>
 								<div class="tsd-parameters">
 									<h4 class="tsd-parameters-title">Parameters</h4>
@@ -98,22 +112,58 @@
 												><span class="tsd-kind-parameter">node</span>:
 												<span class="tsd-signature-type">HTMLElement</span></span
 											>
-											<div class="tsd-comment tsd-typography"><p>the node</p></div>
+											<div class="tsd-comment tsd-typography"><p>the node to process</p></div>
 										</li>
 										<li>
 											<span
-												><span class="tsd-kind-parameter">targetAttributes</span>:
-												<span class="tsd-signature-symbol">{</span>
-												<span class="tsd-signature-symbol">[</span
-												><span class="tsd-kind-index-signature">keyof</span
-												><span class="tsd-signature-symbol">:</span>
-												<span class="tsd-signature-type">string</span
-												><span class="tsd-signature-symbol">]:</span>
+												><span class="tsd-kind-parameter">searchValue</span>:
 												<span class="tsd-signature-type">string</span>
-												<span class="tsd-signature-symbol">}</span></span
+												<span class="tsd-signature-symbol">|</span>
+												<span class="tsd-signature-type">RegExp</span></span
 											>
 											<div class="tsd-comment tsd-typography">
-												<p>the requested node's attributes</p>
+												<p>
+													A string or regular expression to search for. If searchValue is a
+													regex, then it must have the global (g) flag set, or a TypeError is
+													thrown.
+												</p>
+											</div>
+										</li>
+										<li>
+											<span
+												><span class="tsd-kind-parameter">replacer</span>:
+												<span class="tsd-signature-type">string</span>
+												<span class="tsd-signature-symbol">|</span> (<span
+													class="tsd-signature-symbol"
+													>(</span
+												><span class="tsd-kind-parameter">substring</span
+												><span class="tsd-signature-symbol">:</span>
+												<span class="tsd-signature-type">string</span
+												><span class="tsd-signature-symbol">,</span>
+												<span class="tsd-signature-symbol">...</span
+												><span class="tsd-kind-parameter">args</span
+												><span class="tsd-signature-symbol">:</span>
+												<span class="tsd-signature-type">any</span
+												><span class="tsd-signature-symbol">[]</span
+												><span class="tsd-signature-symbol">)</span>
+												<span class="tsd-signature-symbol">=&gt;</span>
+												<span class="tsd-signature-type">string</span>)</span
+											>
+											<div class="tsd-comment tsd-typography">
+												<p>
+													A string containing the text to replace or a function that returns
+													the replacement text.
+												</p>
+											</div>
+										</li>
+										<li>
+											<span
+												><span class="tsd-kind-parameter">textOnly</span>:
+												<span class="tsd-signature-type">boolean</span
+												><span class="tsd-signature-symbol"> = false</span></span
+											>
+											<div class="tsd-comment tsd-typography">
+												<p>If true, any HTML will be rendered as text. Defaults to false</p>
 											</div>
 										</li>
 									</ul>
@@ -124,8 +174,8 @@
 										<li>
 											Defined in
 											<a
-												href="https://github.com/lesjoursfr/browser-tools/blob/a64c40f15443db77c30814427df10503b4d7d339/src/dom.ts#L560"
-												>dom.ts:560</a
+												href="https://github.com/lesjoursfr/browser-tools/blob/a64c40f15443db77c30814427df10503b4d7d339/src/dom.ts#L660"
+												>dom.ts:660</a
 											>
 										</li>
 									</ul>
