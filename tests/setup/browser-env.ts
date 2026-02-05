@@ -11,25 +11,16 @@ import { JSDOM } from "jsdom";
 class Window {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(jsdomConfig: any = {}) {
+    // Extract and exclude proxy, strictSSL from config (not supported in v28 without custom dispatcher)
     // Extract userAgent for resources config
-    // Note: proxy and strictSSL are not used in v28 as we don't load external resources
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { userAgent, proxy, strictSSL, ...otherConfig } = jsdomConfig;
 
-    // Configure resources option for jsdom v28
-    const resources: { userAgent?: string } = {};
-    if (userAgent) {
-      resources.userAgent = userAgent;
-    }
-
     const config = {
       ...otherConfig,
+      // Only add resources option if userAgent is provided
+      ...(userAgent && { resources: { userAgent } }),
     };
-
-    // Only add resources option if we have any settings
-    if (Object.keys(resources).length > 0) {
-      config.resources = resources;
-    }
 
     return new JSDOM("", config).window;
   }
