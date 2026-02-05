@@ -11,27 +11,25 @@ import { JSDOM } from "jsdom";
 class Window {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(jsdomConfig: any = {}) {
-    // Extract and exclude proxy, strictSSL from config (not supported in v28 without custom dispatcher)
-    // Extract userAgent for resources config
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { userAgent, proxy, strictSSL, ...otherConfig } = jsdomConfig;
-
-    const config = {
-      ...otherConfig,
-      // Only add resources option if userAgent is provided
-      ...(userAgent && { resources: { userAgent } }),
-    };
-
-    return new JSDOM("", config).window;
+    const { userAgent } = jsdomConfig;
+    return new JSDOM(
+      "",
+      Object.assign(jsdomConfig, {
+        resources: userAgent ? { userAgent: userAgent } : undefined,
+      })
+    ).window;
   }
 }
 
 // Default jsdom config.
 // These settings must override any custom settings to make sure we can iterate
 // over the window object.
-// Note: In jsdom v28, the default behavior is to not load any external resources,
-// so we don't need to explicitly disable them anymore.
-const defaultJsdomConfig = {};
+const defaultJsdomConfig = {
+  features: {
+    FetchExternalResources: false,
+    ProcessExternalResources: false,
+  },
+};
 
 // IIFE executed on import to return an array of global Node.js properties that
 // conflict with global browser properties.
