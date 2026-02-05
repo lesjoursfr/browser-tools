@@ -4,37 +4,43 @@
  * - https://github.com/lukechilds/browser-env/blob/master/src/index.js (browserEnv function)
  * - https://github.com/lukechilds/window/blob/master/src/index.js (Window class)
  */
-import { JSDOM, ResourceLoader } from "jsdom";
+import { JSDOM } from "jsdom";
 
 // Class to return a window instance.
 // Accepts a jsdom config object.
 class Window {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(jsdomConfig: any = {}) {
-    const { proxy, strictSSL, userAgent } = jsdomConfig;
-    const resources = new ResourceLoader({
-      proxy,
-      strictSSL,
-      userAgent,
-    });
-    return new JSDOM(
-      "",
-      Object.assign(jsdomConfig, {
-        resources,
-      })
-    ).window;
+    // Extract userAgent for resources config
+    // Note: proxy and strictSSL are not used in v28 as we don't load external resources
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { userAgent, proxy, strictSSL, ...otherConfig } = jsdomConfig;
+
+    // Configure resources option for jsdom v28
+    const resources: { userAgent?: string } = {};
+    if (userAgent) {
+      resources.userAgent = userAgent;
+    }
+
+    const config = {
+      ...otherConfig,
+    };
+
+    // Only add resources option if we have any settings
+    if (Object.keys(resources).length > 0) {
+      config.resources = resources;
+    }
+
+    return new JSDOM("", config).window;
   }
 }
 
 // Default jsdom config.
 // These settings must override any custom settings to make sure we can iterate
 // over the window object.
-const defaultJsdomConfig = {
-  features: {
-    FetchExternalResources: false,
-    ProcessExternalResources: false,
-  },
-};
+// Note: In jsdom v28, the default behavior is to not load any external resources,
+// so we don't need to explicitly disable them anymore.
+const defaultJsdomConfig = {};
 
 // IIFE executed on import to return an array of global Node.js properties that
 // conflict with global browser properties.
