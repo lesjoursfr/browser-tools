@@ -212,6 +212,42 @@ export function setAttribute(node: HTMLElement, attribute: string, value: string
   return node;
 }
 
+const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
+/**
+ * Parse a data attribute string value into the appropriate JavaScript type.
+ * Converts "true"/"false" to booleans, numeric strings to numbers, JSON-like
+ * strings to objects/arrays, and returns the original string otherwise.
+ * @param {string} data the attribute value to parse
+ * @returns {BrowserToolsDataType} the parsed value
+ */
+function parseAttrData(data: string): BrowserToolsDataType {
+  if (data === "true") {
+    return true;
+  }
+
+  if (data === "false") {
+    return false;
+  }
+
+  // Only convert to a number if it doesn't change the string
+  const num = +data;
+  if (data === String(num)) {
+    return num;
+  }
+
+  if (rbrace.test(data)) {
+    try {
+      // Parse the data as JSON
+      return JSON.parse(data);
+    } catch (_err) {
+      // If the data is not a valid JSON, return it as a string
+      return data;
+    }
+  }
+
+  return data;
+}
+
 /**
  * Get the given data.
  * This function does not change the DOM.
@@ -224,10 +260,10 @@ export function getData(node: HTMLElement, key?: string): BrowserToolsDataType |
   if (node.ljbtData === undefined) {
     node.ljbtData = {};
     for (const [k, v] of Object.entries(node.dataset)) {
-      if (v === undefined) {
+      if (v === undefined || v === "null") {
         continue;
       }
-      node.ljbtData[dashedToCamel(k)] = v;
+      node.ljbtData[dashedToCamel(k)] = parseAttrData(v);
     }
   }
 
