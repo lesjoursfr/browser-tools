@@ -95,7 +95,20 @@
 							</div>
 							<div class="tsd-description">
 								<div class="tsd-comment tsd-typography">
-									<p>Remove event listeners from the node.</p>
+									<p>
+										Remove event listeners from the node. Events can be separated by a space. For
+										example, &quot;click mouseover&quot; will remove the event listener from both
+										&quot;click&quot; and &quot;mouseover&quot; events. If the handler is not
+										specified, all event listeners of the given type will be removed. If the type is
+										&quot;<em
+											>&quot;, all event listeners will be removed. To remove event listeners with
+											a specific namespace, you can specify the namespace in the events parameter.
+											For example, &quot;click:namespace&quot; will remove all event listeners of
+											the &quot;click&quot; event with the namespace &quot;namespace&quot; and
+											&quot;</em
+										>:namespace&quot; will remove all event listeners with the namespace
+										&quot;namespace&quot;.
+									</p>
 								</div>
 								<div class="tsd-parameters">
 									<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,8 +151,8 @@
 										<li>
 											Defined in
 											<a
-												href="https://github.com/lesjoursfr/browser-tools/blob/a64c40f15443db77c30814427df10503b4d7d339/src/events.ts#L115"
-												>events.ts:115</a
+												href="https://github.com/lesjoursfr/browser-tools/blob/f942d349b379f84dd3560d136c172b701c78ea3c/src/events.ts#L162"
+												>events.ts:162</a
 											>
 										</li>
 									</ul>

@@ -95,7 +95,17 @@
 							</div>
 							<div class="tsd-description">
 								<div class="tsd-comment tsd-typography">
-									<p>Set an event listener on every node.</p>
+									<p>
+										Set an event listener on every node. Events can be separated by a space. For
+										example, &quot;click mouseover&quot; will set the event listener on both
+										&quot;click&quot; and &quot;mouseover&quot; events. Events can also have a
+										namespace. For example, &quot;click:namespace&quot; will set the event listener
+										on the &quot;click&quot; event with the namespace &quot;namespace&quot;. The
+										namespace can be used to remove the event listener later. Namespace can't
+										contain a &quot;:&quot;. For example, &quot;click:namespace1:namespace2&quot;
+										set the event listener on the &quot;click&quot; event with the namespace
+										&quot;namespace1&quot;.
+									</p>
 								</div>
 								<div class="tsd-parameters">
 									<h4 class="tsd-parameters-title">Parameters</h4>
@@ -137,8 +147,8 @@
 										<li>
 											Defined in
 											<a
-												href="https://github.com/lesjoursfr/browser-tools/blob/a64c40f15443db77c30814427df10503b4d7d339/src/events.ts#L95"
-												>events.ts:95</a
+												href="https://github.com/lesjoursfr/browser-tools/blob/f942d349b379f84dd3560d136c172b701c78ea3c/src/events.ts#L110"
+												>events.ts:110</a
 											>
 										</li>
 									</ul>
