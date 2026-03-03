@@ -78,10 +78,7 @@ function removeEventListener(
         continue;
       }
 
-      if (
-        (ns === null || handlerObj.ns === ns) &&
-        (handler === undefined || (typeof handler === "function" && handler === handlerObj.handler))
-      ) {
+      if ((ns === null || ns === handlerObj.ns) && (handler === undefined || handler === handlerObj.handler)) {
         delete node.ljbtEvents[guid];
         node.removeEventListener(handlerObj.type, handlerObj.handler);
       }
