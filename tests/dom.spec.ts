@@ -206,15 +206,20 @@ it("dom.setAttribute", () => {
 });
 
 it("dom.getData", () => {
-  document.body.innerHTML = '<p class="bar" data-key="value" data-dashed-key="dashed">Hello world</p>';
+  document.body.innerHTML = `<p class="bar" data-key="value" data-dashed-key="dashed" data-boolean="true" data-number="42" data-float="3.14" data-null="null" data-json='{"key":"value"}'>Hello world</p>`;
   const node = document.querySelector("p")!;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data = getData(node) as any;
-  const dashed = getData(node, "dashedKey");
 
   assert.strictEqual(data.key, "value");
   assert.strictEqual(data.dashedKey, "dashed");
-  assert.strictEqual(dashed, "dashed");
+  assert.strictEqual(getData(node, "dashedKey"), "dashed");
+  assert.strictEqual(data.boolean, true);
+  assert.strictEqual(data.number, 42);
+  assert.strictEqual(data.float, 3.14);
+  assert.strictEqual(data.null, undefined);
+  assert.strictEqual(getData(node, "null"), null);
+  assert.deepStrictEqual(data.json, { key: "value" });
 });
 
 it("dom.setData", () => {
