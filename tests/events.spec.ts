@@ -140,6 +140,7 @@ it("events.one", async () => {
   assert.strictEqual(node.ljbtEvents[evuid].type, "click");
   assert.strictEqual(node.ljbtEvents[evuid].ns, null);
   assert.notStrictEqual(node.ljbtEvents[evuid].handler, eventHandler);
+  assert.strictEqual(node.ljbtEvents[evuid].originalHandler, eventHandler);
   node.querySelector("p")?.dispatchEvent(new PointerEvent("click", { bubbles: true }));
   await sleep(10); // Wait for the event to be processed
   assert.strictEqual(eventReceivedCount, 1);

@@ -1,4 +1,10 @@
-export type BrowserToolsEvent = { type: string; ns: string | null; handler: EventListenerOrEventListenerObject };
+export type BrowserToolsEvent = {
+  type: string;
+  ns: string | null;
+  handler: EventListenerOrEventListenerObject;
+  originalHandler?: EventListenerOrEventListenerObject;
+};
+
 type BrowserToolsEvents = {
   [key: string]: BrowserToolsEvent;
 };
@@ -34,14 +40,16 @@ function parseEventType(string: string): Omit<BrowserToolsEvent, "handler"> {
 
 /**
  * Set an event listener on the node.
- * @param {Window|Document|HTMLElement} node
- * @param {string} events
- * @param {Function} handler
+ * @param {Window|Document|HTMLElement} node The node to set the event listener on.
+ * @param {string} events The event(s) to listen for.
+ * @param {Function} handler The event handler function to be called when the event is triggered.
+ * @param {Function|undefined} originalHandler The original handler passed to the `one` function. This is used to store the original handler in the event object, so that it can be removed later when the `off` function is called with the original handler.
  */
 function addEventListener(
   node: Window | Document | HTMLElement,
   events: string,
-  handler: EventListenerOrEventListenerObject
+  handler: EventListenerOrEventListenerObject,
+  originalHandler?: EventListenerOrEventListenerObject
 ): void {
   if (node.ljbtEvents === undefined) {
     node.ljbtEvents = {};
@@ -51,7 +59,7 @@ function addEventListener(
     const { type, ns } = parseEventType(event);
     const handlerGuid = (++eventsGuid).toString(10);
     node.addEventListener(type, handler);
-    node.ljbtEvents[handlerGuid] = { type, ns, handler };
+    node.ljbtEvents[handlerGuid] = { type, ns, handler, originalHandler };
   }
 }
 
@@ -78,7 +86,10 @@ function removeEventListener(
         continue;
       }
 
-      if ((ns === null || ns === handlerObj.ns) && (handler === undefined || handler === handlerObj.handler)) {
+      if (
+        (ns === null || ns === handlerObj.ns) &&
+        (handler === undefined || handler === (handlerObj.originalHandler ?? handlerObj.handler))
+      ) {
         delete node.ljbtEvents[guid];
         node.removeEventListener(handlerObj.type, handlerObj.handler);
       }
@@ -111,26 +122,30 @@ export function on(
 }
 
 /**
- * Set a one-time event listener on every node.
+ * Set a one-time event listener on a single node.
  * This is similar to the `on` function, but the event listener will be removed after it is triggered for the first time.
- * @param {Window|Document|HTMLElement|NodeList} nodes
+ * @param {Window|Document|HTMLElement} node
  * @param {string} events
  * @param {Function} handler
  */
 export function one(
-  nodes: Window | Document | HTMLElement | NodeListOf<HTMLElement>,
+  node: Window | Document | HTMLElement,
   events: string,
   handler: EventListenerOrEventListenerObject
 ): void {
-  const oneTimeHandler: EventListenerOrEventListenerObject = function (event) {
-    off(nodes, events, oneTimeHandler);
-    if (typeof handler === "function") {
-      handler(event);
-    } else {
-      handler.handleEvent(event);
-    }
-  };
-  on(nodes, events, oneTimeHandler);
+  addEventListener(
+    node,
+    events,
+    function (event) {
+      removeEventListener(node, events, handler);
+      if (typeof handler === "function") {
+        handler(event);
+      } else {
+        handler.handleEvent(event);
+      }
+    },
+    handler
+  );
 }
 
 /**
