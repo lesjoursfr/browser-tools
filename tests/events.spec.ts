@@ -1,6 +1,6 @@
 import assert from "assert";
 import { createFromTemplate } from "../src/dom.js";
-import { isTouchEvent, off, on, trigger } from "../src/events.js";
+import { isTouchEvent, off, on, one, trigger } from "../src/events.js";
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -124,6 +124,29 @@ it("events.off (with namespace)", async () => {
   node.querySelector("p")?.dispatchEvent(new PointerEvent("click", { bubbles: true }));
   await sleep(10); // Wait for the event to be processed
   assert.strictEqual(eventReceived, false);
+});
+
+it("events.one", async () => {
+  const template = "<div><!--Comment Node-->Text Node<p>HTML Element</p></div>";
+  const node = createFromTemplate(template);
+
+  let eventReceivedCount = 0;
+  const eventHandler = function (event: Event): void {
+    assert.strictEqual(event.type, "click");
+    eventReceivedCount++;
+  };
+  one(node, "click", eventHandler);
+  const evuid = ++eventsGuid;
+  assert.strictEqual(node.ljbtEvents[evuid].type, "click");
+  assert.strictEqual(node.ljbtEvents[evuid].ns, null);
+  assert.notStrictEqual(node.ljbtEvents[evuid].handler, eventHandler);
+  assert.strictEqual(node.ljbtEvents[evuid].originalHandler, eventHandler);
+  node.querySelector("p")?.dispatchEvent(new PointerEvent("click", { bubbles: true }));
+  await sleep(10); // Wait for the event to be processed
+  assert.strictEqual(eventReceivedCount, 1);
+  node.querySelector("p")?.dispatchEvent(new PointerEvent("click", { bubbles: true }));
+  await sleep(10); // Wait for the event to be processed
+  assert.strictEqual(eventReceivedCount, 1);
 });
 
 it("events.trigger", async () => {
