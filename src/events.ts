@@ -1,4 +1,4 @@
-export type BrowserToolsEvent = { type: string; ns: Array<string> | null; handler: EventListenerOrEventListenerObject };
+export type BrowserToolsEvent = { type: string; ns: string | null; handler: EventListenerOrEventListenerObject };
 type BrowserToolsEvents = {
   [key: string]: BrowserToolsEvent;
 };
@@ -19,13 +19,16 @@ let eventsGuid = 0;
 
 /**
  * Parse an event type to separate the type & the namespace
+ * The type & namespace are separated by a ":". For example, "click:namespace" will be parsed to { type: "click", ns: "namespace" }
+ * Namespace is optional. For example, "click" will be parsed to { type: "click", ns: null }
+ * Namespace can't contain a ":". For example, "click:namespace1:namespace2" will be parsed to { type: "click", ns: "namespace1" }
  * @param {string} string
  */
 function parseEventType(string: string): Omit<BrowserToolsEvent, "handler"> {
-  const [type, ...nsArray] = string.split(".");
+  const [type, ...nsArray] = string.split(":");
   return {
     type,
-    ns: nsArray ?? null,
+    ns: nsArray.length > 0 ? nsArray[0] : null,
   };
 }
 
@@ -76,7 +79,7 @@ function removeEventListener(
       }
 
       if (
-        (ns === null || handlerObj.ns?.includes(ns[0])) &&
+        (ns === null || handlerObj.ns === ns) &&
         (handler === undefined || (typeof handler === "function" && handler === handlerObj.handler))
       ) {
         delete node.ljbtEvents[guid];
@@ -88,6 +91,10 @@ function removeEventListener(
 
 /**
  * Set an event listener on every node.
+ * Events can be separated by a space. For example, "click mouseover" will set the event listener on both "click" and "mouseover" events.
+ * Events can also have a namespace. For example, "click:namespace" will set the event listener on the "click" event with the namespace "namespace".
+ * The namespace can be used to remove the event listener later.
+ * Namespace can't contain a ":". For example, "click:namespace1:namespace2" set the event listener on the "click" event with the namespace "namespace1".
  * @param {Window|Document|HTMLElement|NodeList} nodes
  * @param {string} events
  * @param {Function} handler
@@ -108,6 +115,11 @@ export function on(
 
 /**
  * Remove event listeners from the node.
+ * Events can be separated by a space. For example, "click mouseover" will remove the event listener from both "click" and "mouseover" events.
+ * If the handler is not specified, all event listeners of the given type will be removed. If the type is "*", all event listeners will be removed.
+ * To remove event listeners with a specific namespace, you can specify the namespace in the events parameter.
+ * For example, "click:namespace" will remove all event listeners of the "click" event with the namespace "namespace"
+ * and "*:namespace" will remove all event listeners with the namespace "namespace".
  * @param {Window|Document|HTMLElement|NodeList} nodes
  * @param {string} events
  * @param {Function|undefined} handler
@@ -133,7 +145,9 @@ export function off(
  * @param {Object|undefined} payload
  */
 export function trigger(node: Window | Document | HTMLElement, event: string | Event, payload?: object): void {
-  node.dispatchEvent(typeof event === "string" ? new CustomEvent(event, { detail: payload }) : event);
+  node.dispatchEvent(
+    typeof event === "string" ? new CustomEvent(event, { detail: payload, bubbles: true, cancelable: true }) : event
+  );
 }
 
 /**
