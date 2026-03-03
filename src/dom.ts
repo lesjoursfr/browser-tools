@@ -213,6 +213,13 @@ export function setAttribute(node: HTMLElement, attribute: string, value: string
 }
 
 const rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/;
+/**
+ * Parse a data attribute string value into the appropriate JavaScript type.
+ * Converts "true"/"false" to booleans, numeric strings to numbers, JSON-like
+ * strings to objects/arrays, and returns the original string otherwise.
+ * @param {string} data the attribute value to parse
+ * @returns {BrowserToolsDataType} the parsed value
+ */
 function parseAttrData(data: string): BrowserToolsDataType {
   if (data === "true") {
     return true;
@@ -223,8 +230,9 @@ function parseAttrData(data: string): BrowserToolsDataType {
   }
 
   // Only convert to a number if it doesn't change the string
-  if (data === +data + "") {
-    return +data;
+  const num = +data;
+  if (data === String(num)) {
+    return num;
   }
 
   if (rbrace.test(data)) {

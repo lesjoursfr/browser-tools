@@ -206,7 +206,7 @@ it("dom.setAttribute", () => {
 });
 
 it("dom.getData", () => {
-  document.body.innerHTML = `<p class="bar" data-key="value" data-dashed-key="dashed" data-boolean="true" data-number="42" data-float="3.14" data-null="null" data-json='{"key":"value"}'>Hello world</p>`;
+  document.body.innerHTML = `<p class="bar" data-key="value" data-dashed-key="dashed" data-true="true" data-false="false" data-number="42" data-float="3.14" data-nan="NaN" data-infinity="Infinity" data-null="null" data-json='{"key":"value"}'>Hello world</p>`;
   const node = document.querySelector("p")!;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data = getData(node) as any;
@@ -214,9 +214,12 @@ it("dom.getData", () => {
   assert.strictEqual(data.key, "value");
   assert.strictEqual(data.dashedKey, "dashed");
   assert.strictEqual(getData(node, "dashedKey"), "dashed");
-  assert.strictEqual(data.boolean, true);
+  assert.strictEqual(data.true, true);
+  assert.strictEqual(data.false, false);
   assert.strictEqual(data.number, 42);
   assert.strictEqual(data.float, 3.14);
+  assert.strictEqual(data.nan, NaN);
+  assert.strictEqual(data.infinity, Infinity);
   assert.strictEqual(data.null, undefined);
   assert.strictEqual(getData(node, "null"), null);
   assert.deepStrictEqual(data.json, { key: "value" });
