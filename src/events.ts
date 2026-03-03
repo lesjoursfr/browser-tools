@@ -111,6 +111,29 @@ export function on(
 }
 
 /**
+ * Set a one-time event listener on every node.
+ * This is similar to the `on` function, but the event listener will be removed after it is triggered for the first time.
+ * @param {Window|Document|HTMLElement|NodeList} nodes
+ * @param {string} events
+ * @param {Function} handler
+ */
+export function one(
+  nodes: Window | Document | HTMLElement | NodeListOf<HTMLElement>,
+  events: string,
+  handler: EventListenerOrEventListenerObject
+): void {
+  const oneTimeHandler: EventListenerOrEventListenerObject = function (event) {
+    off(nodes, events, oneTimeHandler);
+    if (typeof handler === "function") {
+      handler(event);
+    } else {
+      handler.handleEvent(event);
+    }
+  };
+  on(nodes, events, oneTimeHandler);
+}
+
+/**
  * Remove event listeners from the node.
  * Events can be separated by a space. For example, "click mouseover" will remove the event listener from both "click" and "mouseover" events.
  * If the handler is not specified, all event listeners of the given type will be removed. If the type is "*", all event listeners will be removed.
