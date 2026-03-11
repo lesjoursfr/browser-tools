@@ -249,6 +249,23 @@ function parseAttrData(data: string): BrowserToolsDataType {
 }
 
 /**
+ * Read the data of the node from its data attributes.
+ * @param {HTMLElement} node
+ * @returns {BrowserToolsData} the read data
+ */
+function readAttrData(node: HTMLElement): BrowserToolsData {
+  const ljbtData = {} as BrowserToolsData;
+  for (const [k, v] of Object.entries(node.dataset)) {
+    if (v === undefined || v === "null") {
+      continue;
+    }
+    ljbtData[dashedToCamel(k)] = parseAttrData(v);
+  }
+
+  return ljbtData;
+}
+
+/**
  * Get the given data.
  * This function does not change the DOM.
  * If there is no key this function return all data
@@ -258,13 +275,7 @@ function parseAttrData(data: string): BrowserToolsDataType {
  */
 export function getData(node: HTMLElement, key?: string): BrowserToolsDataType | null {
   if (node.ljbtData === undefined) {
-    node.ljbtData = {};
-    for (const [k, v] of Object.entries(node.dataset)) {
-      if (v === undefined || v === "null") {
-        continue;
-      }
-      node.ljbtData[dashedToCamel(k)] = parseAttrData(v);
-    }
+    node.ljbtData = readAttrData(node);
   }
 
   return key === undefined ? node.ljbtData : (node.ljbtData[dashedToCamel(key)] ?? null);
@@ -281,7 +292,7 @@ export function getData(node: HTMLElement, key?: string): BrowserToolsDataType |
  */
 export function setData(node: HTMLElement, key: string, value: BrowserToolsDataType | null): HTMLElement {
   if (node.ljbtData === undefined) {
-    node.ljbtData = {};
+    node.ljbtData = readAttrData(node);
   }
 
   if (value === null) {
