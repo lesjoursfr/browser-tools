@@ -223,16 +223,19 @@ it("dom.getData", () => {
   assert.strictEqual(data.null, undefined);
   assert.strictEqual(getData(node, "null"), null);
   assert.deepStrictEqual(data.json, { key: "value" });
+  assert.strictEqual(getData(node, "missing"), null);
 });
 
 it("dom.setData", () => {
   document.body.innerHTML = '<p class="bar" data-key="value">Hello world</p>';
   const node = document.querySelector("p")!;
-  setData(node, "key", "bar");
-  setData(node, "foo", "bar");
 
-  assert.strictEqual(getData(node, "key"), "bar");
+  setData(node, "foo", "bar");
   assert.strictEqual(getData(node, "foo"), "bar");
+
+  assert.strictEqual(getData(node, "key"), "value");
+  setData(node, "key", "bar");
+  assert.strictEqual(getData(node, "key"), "bar");
 });
 
 it("dom.hasTagName", () => {
