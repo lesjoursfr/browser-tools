@@ -254,7 +254,7 @@ function parseAttrData(data: string): BrowserToolsDataType {
  * @returns {BrowserToolsData} the read data
  */
 function readAttrData(node: HTMLElement): BrowserToolsData {
-  const ljbtData = {} as BrowserToolsData;
+  const ljbtData: BrowserToolsData = {};
   for (const [k, v] of Object.entries(node.dataset)) {
     if (v === undefined || v === "null") {
       continue;
