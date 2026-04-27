@@ -4,6 +4,7 @@
 	"description": "Some browser tools for events & DOM manipulation.",
 	"license": "MIT",
 	"repository": {
+		"type": "git",
 		"url": "git+https://github.com/lesjoursfr/browser-tools.git"
 	},
 	"homepage": "https://github.com/lesjoursfr/browser-tools#readme",
