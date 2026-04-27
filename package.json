@@ -1,9 +1,11 @@
 {
 	"name": "@lesjoursfr/browser-tools",
-	"version": "3.0.2",
+	"version": "3.1.0",
 	"description": "Some browser tools for events & DOM manipulation.",
 	"license": "MIT",
-	"repository": "lesjoursfr/browser-tools",
+	"repository": {
+		"url": "git+https://github.com/lesjoursfr/browser-tools.git"
+	},
 	"homepage": "https://github.com/lesjoursfr/browser-tools#readme",
 	"bugs": {
 		"url": "https://github.com/lesjoursfr/browser-tools/issues"
@@ -27,10 +29,6 @@
 		"build": "tsc",
 		"typedoc": "typedoc src/index.ts --out ./docs && prettier --write ./docs --ignore-path .gitignore"
 	},
-	"files": [
-		"src/**/*",
-		"dist/**/*"
-	],
 	"keywords": [
 		"Browser",
 		"Tools",
