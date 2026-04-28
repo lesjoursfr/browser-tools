@@ -7,12 +7,12 @@ src
 tests
 .editorconfig
 .eslintignore
-eslint.config.mjs
+eslint.config.js
 .gitattributes
 .gitignore
 .mocharc.json
 .prettierignore
-prettier.config.mjs
+prettier.config.js
 .whitesource
 .yarnrc.yml
 tsconfig.json
